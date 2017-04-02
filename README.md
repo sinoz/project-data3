@@ -4,3 +4,5 @@ A university data science group project. The application is GUI based and primar
 - Google Guava 21.0
 - Google Guice 4.10
 - RxJava 2.1
+- HikariCP 2.6.1
+- PostgreSQL JDBC Driver 4.2
