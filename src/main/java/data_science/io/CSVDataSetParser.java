@@ -2,9 +2,7 @@ package data_science.io;
 
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
-import com.google.inject.assistedinject.Assisted;
 
-import javax.inject.Inject;
 import java.nio.file.Path;
 import java.util.*;
 
@@ -26,8 +24,7 @@ public final class CSVDataSetParser implements DataSetParser {
   /**
    * Creates a new {@link CSVDataSetParser} that parses data from the given {@link Path}.
    */
-  @Inject
-  public CSVDataSetParser(@Assisted Path sourcePath) throws Exception {
+  public CSVDataSetParser(Path sourcePath) throws Exception {
     this.sourcePath = sourcePath;
   }
 
