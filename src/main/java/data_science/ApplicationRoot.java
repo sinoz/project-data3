@@ -1,6 +1,10 @@
 package data_science;
 
+import com.lynden.gmapsfx.GoogleMapView;
 import javafx.application.Application;
+import javafx.geometry.Rectangle2D;
+import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.awt.*;
@@ -20,26 +24,49 @@ public final class ApplicationRoot extends Application {
   /**
    * The default resolution of this application.
    */
-  private final Dimension RESOLUTION = new Dimension(800, 600);
+  private final Rectangle2D RESOLUTION = Screen.getPrimary().getVisualBounds();
+
+  /**
+   * The {@link GoogleMapView} to present a map on.
+   */
+  private GoogleMapView mapView;
+
+  /**
+   * The current {@link Scene} to present.
+   */
+  private Scene scene;
 
   @Override
-  public void start(Stage primaryStage) throws Exception {
-    configure(primaryStage);
+  public void start(Stage stage) throws Exception {
+    try {
+      mapView = new GoogleMapView();
+      scene = new MapViewScene(mapView);
+
+      configure(stage);
+    } catch (Exception e) {
+      e.printStackTrace();
+      // lol
+      System.out.println("error");
+    }
   }
 
   /**
-   * Configures the {@link Stage} for this application.
+   * Configures the given {@link Stage}.
    */
   private void configure(Stage stage) {
     {
-      stage.setMinWidth(RESOLUTION.getWidth());
-      stage.setMinHeight(RESOLUTION.getHeight());
+      stage.setMinWidth(RESOLUTION.getWidth() / 2);
+      stage.setMinHeight(RESOLUTION.getHeight() * 0.75);
 
       stage.setWidth(RESOLUTION.getWidth());
       stage.setHeight(RESOLUTION.getHeight());
     }
 
-    stage.setResizable(false);
+    stage.setResizable(true);
+
+    stage.setTitle("FX");
+    stage.setScene(scene);
+
     stage.show();
   }
 
