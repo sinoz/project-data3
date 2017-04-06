@@ -7,7 +7,6 @@ import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
-import java.awt.*;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -24,7 +23,7 @@ public final class ApplicationRoot extends Application {
   /**
    * The default resolution of this application.
    */
-  private final Rectangle2D RESOLUTION = Screen.getPrimary().getVisualBounds();
+  public static Rectangle2D RESOLUTION;
 
   /**
    * The {@link GoogleMapView} to present a map on.
@@ -38,6 +37,8 @@ public final class ApplicationRoot extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
+    RESOLUTION = Screen.getPrimary().getVisualBounds(); // TODO turn into a constant
+
     mapView = new GoogleMapView();
     scene = new MapViewScene(mapView);
 

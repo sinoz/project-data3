@@ -5,23 +5,23 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
+import static data_science.ApplicationRoot.RESOLUTION;
+
 /**
- * TODO
+ * The root pane.
  * @author I.A
  */
 public final class ApplicationPane extends BorderPane {
   /**
-   * TODO
+   * Creates a new {@link ApplicationPane} that renders the given {@link GoogleMapView}.
    */
   ApplicationPane(GoogleMapView view) {
     HBox statusbar = new HBox();
 
-    statusbar.getChildren().addAll(new Button("1"), new Button("2"), new Button("3"));
+    view.setPrefWidth(RESOLUTION.getWidth() * 0.75F);
+    view.setPrefHeight(RESOLUTION.getHeight());
 
-    view.setMaxWidth(500);
-    view.setMaxHeight(500);
-
-    setCenter(view);
-    setTop(statusbar);
+    setRight(view);
+    setLeft(statusbar);
   }
 }

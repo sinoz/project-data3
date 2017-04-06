@@ -42,10 +42,11 @@ public final class MapViewListener implements MapComponentInitializedListener {
 
     //Add a marker to the map
     for (LatLong point : points) {
-      MarkerOptions markerOptions = new MarkerOptions();
-      markerOptions.position(new LatLong(point.getLatitude(), point.getLongitude())).label("FUCK SHIT").visible(Boolean.TRUE).title("My Marker");
+      Marker marker = new Marker(new MarkerOptions()
+          .position(point)
+          .visible(Boolean.TRUE)
+          .title("My Marker"));
 
-      Marker marker = new Marker(markerOptions);
       map.addMarker(marker);
     }
   }

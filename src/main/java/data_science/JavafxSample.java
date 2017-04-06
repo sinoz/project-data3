@@ -1,13 +1,12 @@
+package data_science;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Group;
 import javafx.scene.Scene;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -25,7 +24,7 @@ public class JavafxSample extends Application {
 		ComboBox locationchoiceBox1 = new ComboBox(
 				FXCollections.observableArrayList("lekker boeiend", "Oud-IJsselmonde", "Groot-IJsselmonde"));
 
-		// Grid Pane creëeren voor de positie van alle elementen
+		// Grid Pane creï¿½eren voor de positie van alle elementen
 		GridPane gridPane = new GridPane();
 
 		// de padding zodat niet alles tegen de rand van de window aan ligt
