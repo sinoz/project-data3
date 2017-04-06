@@ -38,16 +38,10 @@ public final class ApplicationRoot extends Application {
 
   @Override
   public void start(Stage stage) throws Exception {
-    try {
-      mapView = new GoogleMapView();
-      scene = new MapViewScene(mapView);
+    mapView = new GoogleMapView();
+    scene = new MapViewScene(mapView);
 
-      configure(stage);
-    } catch (Exception e) {
-      e.printStackTrace();
-      // lol
-      System.out.println("error");
-    }
+    configure(stage);
   }
 
   /**
