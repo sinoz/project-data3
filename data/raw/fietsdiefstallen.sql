@@ -1713,5 +1713,8 @@ SELECT COUNT(*) FROM bicycle_thefts WHERE mk_omschrijving LIKE 'DIEFSTAL MET GEW
 /* Hoeveel fietsdiefstallen zijn er getelt per soort diefstal? */
 SELECT COUNT(*), mk_omschrijving FROM bicycle_thefts WHERE plaats = 'ROTTERDAM' GROUP BY mk_omschrijving;
 
-/* Om welke tijd worden de meeste fietsen gestolen? */
+/* Op welke datum zijn de meeste fietsen gestolen? */
 SELECT COUNT(*) AS count, kennisname FROM bicycle_thefts GROUP BY kennisname ORDER BY count DESC;
+
+/* Om welke tijd worden de meeste fietsen gestolen? */
+SELECT COUNT(*) AS count, begintijd FROM bicycle_thefts GROUP BY begintijd ORDER BY count DESC;

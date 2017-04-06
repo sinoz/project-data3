@@ -9,12 +9,12 @@ import java.util.Scanner;
  * Parses all bicycle theft data from a CSV file and translates it to suitable SQL data.
  * @author I.A
  */
-public final class BicycleDrumsCSV2SQL {
+public final class BicycleStallsCSV2SQL {
   private static final String EMPTY = "";
 
   public static void main(String[] args) throws Exception {
     try (Scanner scanner = new Scanner(Paths.get("data/raw/fietstrommels.csv"))) {
-      computeEntries(scanner).stream().map(BicycleDrumsCSV2SQL::toInsertQuery).forEach(System.out::println);
+      computeEntries(scanner).stream().map(BicycleStallsCSV2SQL::toInsertQuery).forEach(System.out::println);
     }
   }
 
@@ -23,20 +23,18 @@ public final class BicycleDrumsCSV2SQL {
   private static String toInsertQuery(Entry entry) {
     StringBuilder bldr = new StringBuilder();
 
-    bldr.append("INSERT INTO bicycle_drums (");
-    for (int colId = 0; colId < columns.size(); colId++) {
-      bldr.append(columns.get(colId));
-      if (colId != (columns.size() - 1)) {
-        bldr.append(", ");
-      }
-    }
-    bldr.append(") ");
+    bldr.append("INSERT INTO bicycle_stalls (street, latitude, longitude, area) ");
     bldr.append("VALUES (");
 
     // NOTE: terrible code below
     {
-      // TODO bldr.append("\"").append(entry.voorvalNummer).append("\"").append(", ");
+      bldr.append("\'").append(entry.street).append("\'").append(", ");
+      bldr.append("\'").append(entry.latitude).append("\'").append(", ");
+      bldr.append("\'").append(entry.longitude).append("\'").append(", ");
+      bldr.append("\'").append(entry.area).append("\'");
     }
+
+    bldr.append(");");
 
     return bldr.toString();
   }
@@ -57,7 +55,15 @@ public final class BicycleDrumsCSV2SQL {
 
       if (line.startsWith("#")) {
         for (int i = 0; i < values.length; i++) {
-          columns.add(values[i].replaceAll(" ", "_").replaceAll("#", "").toLowerCase());
+          if (values[i].length() == 0) {
+            continue;
+          }
+
+          columns.add(values[i]
+                 .replaceAll(" ", "_")
+                 .replaceAll("#", "")
+                 .replaceAll("\\.", "")
+                 .toLowerCase().trim());
         }
 
         continue;
@@ -65,7 +71,10 @@ public final class BicycleDrumsCSV2SQL {
 
       Entry entry = new Entry();
 
-      // TODO entry.voorvalNummer = getOrEmpty(values, 0);
+      entry.street = getOrEmpty(values, 9);
+      entry.latitude = getOrEmpty(values, 18);
+      entry.longitude = getOrEmpty(values, 19);
+      entry.area = getOrEmpty(values, 28);
 
       entries.add(entry);
     }
@@ -74,7 +83,10 @@ public final class BicycleDrumsCSV2SQL {
   }
 
   private static class Entry {
-    private String inventoryId;
+    private String street;
+    private String latitude;
+    private String longitude;
+    private String area;
   }
 
   private static String getOrEmpty(String[] values, int elementIdx) {
