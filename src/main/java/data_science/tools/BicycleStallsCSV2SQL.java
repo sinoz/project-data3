@@ -29,8 +29,8 @@ public final class BicycleStallsCSV2SQL {
     // NOTE: terrible code below
     {
       bldr.append("\'").append(entry.street).append("\'").append(", ");
-      bldr.append("\'").append(entry.latitude).append("\'").append(", ");
-      bldr.append("\'").append(entry.longitude).append("\'").append(", ");
+      bldr.append(entry.latitude).append(", ");
+      bldr.append(entry.longitude).append(", ");
       bldr.append("\'").append(entry.area).append("\'");
     }
 
@@ -71,7 +71,7 @@ public final class BicycleStallsCSV2SQL {
 
       Entry entry = new Entry();
 
-      entry.street = getOrEmpty(values, 9);
+      entry.street = fixStreetName(getOrEmpty(values, 9));
       entry.latitude = getOrEmpty(values, 18);
       entry.longitude = getOrEmpty(values, 19);
       entry.area = getOrEmpty(values, 28);
@@ -87,6 +87,17 @@ public final class BicycleStallsCSV2SQL {
     private String latitude;
     private String longitude;
     private String area;
+  }
+
+  private static String fixStreetName(String value) {
+    return value.replaceAll("KD", "KADE")
+        .replaceAll("SNGL", "SINGEL")
+        .replaceAll("STR", "STRAAT")
+        .replaceAll("PLN", "PLEIN")
+        .replaceAll("WG", "WEG")
+        .replaceAll("DK", "DIJK")
+        .replaceAll("LN", "LAAN")
+        .replaceAll("V D", "VAN DER");
   }
 
   private static String getOrEmpty(String[] values, int elementIdx) {

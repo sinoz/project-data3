@@ -1706,15 +1706,3 @@ INSERT INTO bicycle_thefts (voorval_nummer, kennisname, mk, mk_omschrijving, pog
 INSERT INTO bicycle_thefts (voorval_nummer, kennisname, mk, mk_omschrijving, poging, district, werkgebied, plaats, buurt, straat, begin_dagsoort, begindatum, begintijd, eind_dagsoort, einddatum, eindtijd, gemiddelde_jaar, gemiddelde_maand, gemiddelde_dagsoort, gemiddelde_dagdeel, trefwoord, object, merk, type, kleur) VALUES ('2013191581-1', '6/24/2013', 'A73', 'DIEFSTAL BROMFIETS/SNORFIETS', 'N', 'DISTRICT 4', 'BINNENROTTE/OUDE HAVEN', 'ROTTERDAM', '10 STADSDRIEHOEK', 'BLAAK', 'ZO', '6/23/2013', '18:30', 'ZO', '6/23/2013', '21:30', '2013', '6', 'ZO', '18:00-23:59', '', 'SNORFIETS', 'PIAGGIO', 'PIAGGIO', 'N/A' );
 INSERT INTO bicycle_thefts (voorval_nummer, kennisname, mk, mk_omschrijving, poging, district, werkgebied, plaats, buurt, straat, begin_dagsoort, begindatum, begintijd, eind_dagsoort, einddatum, eindtijd, gemiddelde_jaar, gemiddelde_maand, gemiddelde_dagsoort, gemiddelde_dagdeel, trefwoord, object, merk, type, kleur) VALUES ('2013191793-1', '6/24/2013', 'A72', 'DIEFSTAL FIETS', 'N', 'DISTRICT 10', 'TARWEWIJK/OUD-CHARLOIS/CARNISSE/ZUIDWIJK/PENDRECHT', 'ROTTERDAM', '73 ZUIDWIJK', 'SCHERE', 'MA', '6/24/2013', '16:00', 'MA', '6/24/2013', '17:00', '2013', '6', 'MA', '12:00-17:59', 'DAMES', 'FIETS', 'GAZELLE', 'GAZELLE', 'SPRIT' );
 INSERT INTO bicycle_thefts (voorval_nummer, kennisname, mk, mk_omschrijving, poging, district, werkgebied, plaats, buurt, straat, begin_dagsoort, begindatum, begintijd, eind_dagsoort, einddatum, eindtijd, gemiddelde_jaar, gemiddelde_maand, gemiddelde_dagsoort, gemiddelde_dagdeel, trefwoord, object, merk, type) VALUES ('19758', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '');
-
-/* Hoeveel fietsen worden met geweld gestolen? */
-SELECT COUNT(*) FROM bicycle_thefts WHERE mk_omschrijving LIKE 'DIEFSTAL MET GEWELD%';
-
-/* Hoeveel fietsdiefstallen zijn er getelt per soort diefstal? */
-SELECT COUNT(*), mk_omschrijving FROM bicycle_thefts WHERE plaats = 'ROTTERDAM' GROUP BY mk_omschrijving;
-
-/* Op welke datum zijn de meeste fietsen gestolen? */
-SELECT COUNT(*) AS count, kennisname FROM bicycle_thefts GROUP BY kennisname ORDER BY count DESC;
-
-/* Om welke tijd worden de meeste fietsen gestolen? */
-SELECT COUNT(*) AS count, begintijd FROM bicycle_thefts GROUP BY begintijd ORDER BY count DESC;
