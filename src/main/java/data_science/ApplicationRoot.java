@@ -7,6 +7,7 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
+import data_science.ui.ApplicationPane;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -15,6 +16,7 @@ import java.util.concurrent.Executors;
  * The main entry point to this application.
  * @author I.A
  */
+
 public final class ApplicationRoot extends Application {
   /**
    * The default resolution of this application.
