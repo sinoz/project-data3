@@ -1,32 +1,16 @@
 package data_science.database;
 
+import com.google.gson.Gson;
 import com.zaxxer.hikari.HikariConfig;
+
+import java.io.FileReader;
+import java.nio.file.Paths;
 
 /**
  * Describes the configuration of Hikari data sources.
  * @author I.A
  */
 final class HikariDbConfig extends HikariConfig {
-	/**
-	 * The account credentials of the DBMS to access.
-	 */
-	private static final String USERNAME = "postgres", PASSWORD = "root";
-
-	/**
-	 * The database to access.
-	 */
-	private static final String DATABASE = "bicycles";
-
-	/**
-	 * The remote or local address of the database to connect to.
-	 */
-	private static final String ADDRESS = "localhost";
-
-	/**
-	 * The port.
-	 */
-	private static final int PORT = 5432;
-
 	/**
 	 * The initial capacity of the prepared statements' cache.
 	 */
@@ -44,9 +28,20 @@ final class HikariDbConfig extends HikariConfig {
 	 * Configures database connection details.
 	 */
 	private void configureConnectionDetails() {
-		setJdbcUrl("jdbc:postgresql://" + ADDRESS + ":" + PORT + "/" + DATABASE);
-		setUsername(USERNAME);
-		setPassword(PASSWORD);
+		try {
+			try (FileReader reader = new FileReader(Paths.get("data/db_details.json").toString())) {
+				Gson gson = new Gson();
+				DbConfigJson config = gson.fromJson(reader, DbConfigJson.class);
+
+				setJdbcUrl("jdbc:postgresql://" + config.address + ":" + config.port + "/" + config.database);
+
+				setUsername(config.username);
+				setPassword(config.password);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.exit(0); // just fail the program, useless without a database
+		}
 	}
 
 	/**
@@ -55,5 +50,17 @@ final class HikariDbConfig extends HikariConfig {
 	private void configureDataSourceProperties() {
 		addDataSourceProperty("cachePrepStmts", "true");
 		addDataSourceProperty("prepStmtCacheSize", "" + STATEMENTS_CACHE_SIZE);
+	}
+
+	/**
+	 * A data blue print of the 'db_details.json' file.
+	 * @author I.A
+	 */
+	static class DbConfigJson {
+		public String username;
+		public String password;
+		public int port;
+		public String address;
+		public String database;
 	}
 }
