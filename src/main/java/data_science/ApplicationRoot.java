@@ -17,7 +17,6 @@ import java.util.concurrent.Executors;
  * The main entry point to this application.
  * @author I.A
  */
-
 public final class ApplicationRoot extends Application {
   /**
    * The default resolution of this application.
