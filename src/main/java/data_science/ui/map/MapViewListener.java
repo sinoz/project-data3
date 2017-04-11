@@ -33,7 +33,7 @@ public final class MapViewListener implements MapComponentInitializedListener {
   public void mapInitialized() {
     //Set the initial properties of the map.
     MapOptions mapOptions = new MapOptions();
-    mapOptions.center(new LatLong(51.934875, 4.3667926)).overviewMapControl(false).panControl(false).rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(false).zoom(12);
+    mapOptions.center(new LatLong(51.934875, 4.3667926)).overviewMapControl(false).panControl(false).rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(false).zoom(13);
 
     map = mapView.createMap(mapOptions);
 
