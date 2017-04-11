@@ -1,4 +1,4 @@
-package data_science.ui;
+package samples;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;

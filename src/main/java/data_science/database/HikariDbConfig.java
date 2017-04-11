@@ -18,6 +18,11 @@ final class HikariDbConfig extends HikariConfig {
 	private static final String DATABASE = "bicycles";
 
 	/**
+	 * The remote or local address of the database to connect to.
+	 */
+	private static final String ADDRESS = "localhost";
+
+	/**
 	 * The port.
 	 */
 	private static final int PORT = 5432;
@@ -39,7 +44,7 @@ final class HikariDbConfig extends HikariConfig {
 	 * Configures database connection details.
 	 */
 	private void configureConnectionDetails() {
-		setJdbcUrl("jdbc:postgresql://localhost:" + PORT + "/" + DATABASE);
+		setJdbcUrl("jdbc:postgresql://" + ADDRESS + ":" + PORT + "/" + DATABASE);
 		setUsername(USERNAME);
 		setPassword(PASSWORD);
 	}

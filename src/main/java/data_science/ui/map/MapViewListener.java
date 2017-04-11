@@ -1,9 +1,11 @@
 package data_science.ui.map;
 
-import com.google.common.collect.ImmutableList;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.object.*;
+import data_science.database.query.SafestBicycleStalls;
+import data_science.model.BicycleStall;
+import javafx.application.Platform;
 
 /**
  * A {@link MapComponentInitializedListener} to react to map component events.
@@ -35,19 +37,15 @@ public final class MapViewListener implements MapComponentInitializedListener {
 
     map = mapView.createMap(mapOptions);
 
-    ImmutableList<LatLong> points = ImmutableList.<LatLong>builder()
-        .add(new LatLong(51.92293167, 4.46130991))
-        .add(new LatLong(51.92410235, 4.482054381))
-        .build();
+    // samples of code fetching some data from the database and presenting it on the screen
+    SafestBicycleStalls.compute().take(3).subscribe((BicycleStall s) -> {
+      Platform.runLater(() -> {
+        // for now we just create a marker on our map
+        LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
+        Marker marker = new Marker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE));
 
-    //Add a marker to the map
-    for (LatLong point : points) {
-      Marker marker = new Marker(new MarkerOptions()
-          .position(point)
-          .visible(Boolean.TRUE)
-          .title("My Marker"));
-
-      map.addMarker(marker);
-    }
+        map.addMarker(marker);
+      });
+    });
   }
 }
