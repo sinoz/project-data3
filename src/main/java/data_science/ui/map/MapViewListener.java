@@ -38,14 +38,14 @@ public final class MapViewListener implements MapComponentInitializedListener {
     map = mapView.createMap(mapOptions);
 
     // samples of code fetching some data from the database and presenting it on the screen
-//    SafestBicycleStalls.compute().take(3).subscribe((BicycleStall s) -> {
-//      Platform.runLater(() -> {
-//        // for now we just create a marker on our map
-//        LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
-//        Marker marker = new Marker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE));
-//
-//        map.addMarker(marker);
-//      });
-//    });
+    SafestBicycleStalls.compute().take(3).subscribe((BicycleStall s) -> {
+      Platform.runLater(() -> {
+        // for now we just create a marker on our map
+        LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
+        Marker marker = new Marker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE));
+
+        map.addMarker(marker);
+      });
+    });
   }
 }

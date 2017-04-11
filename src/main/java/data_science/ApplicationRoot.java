@@ -46,7 +46,7 @@ public final class ApplicationRoot extends Application {
    * Initializes the {@link HikariDbService}.
    */
   private void initDbService() {
-    //HikariDbService.initialize();
+    HikariDbService.initialize();
   }
 
   /**

@@ -3,7 +3,6 @@ package data_science.ui;
 import com.lynden.gmapsfx.GoogleMapView;
 import javafx.scene.layout.BorderPane;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
