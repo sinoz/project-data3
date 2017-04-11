@@ -1,4 +1,4 @@
-package data_science;
+package data_science.ui.map;
 
 import com.google.common.collect.ImmutableList;
 import com.lynden.gmapsfx.GoogleMapView;

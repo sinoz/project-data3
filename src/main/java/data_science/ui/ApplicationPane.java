@@ -1,7 +1,6 @@
-package data_science;
+package data_science.ui;
 
 import com.lynden.gmapsfx.GoogleMapView;
-import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 
@@ -15,7 +14,7 @@ public final class ApplicationPane extends BorderPane {
   /**
    * Creates a new {@link ApplicationPane} that renders the given {@link GoogleMapView}.
    */
-  ApplicationPane(GoogleMapView view) {
+  public ApplicationPane(GoogleMapView view) {
     HBox statusbar = new HBox();
 
     view.setPrefWidth(RESOLUTION.getWidth() * 0.75F);

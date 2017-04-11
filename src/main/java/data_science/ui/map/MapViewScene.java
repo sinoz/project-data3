@@ -1,6 +1,7 @@
-package data_science;
+package data_science.ui.map;
 
 import com.lynden.gmapsfx.GoogleMapView;
+import data_science.ui.ApplicationPane;
 import javafx.scene.Scene;
 
 /**
@@ -16,7 +17,7 @@ public final class MapViewScene extends Scene {
   /**
    * Creates a new {@link MapViewScene}.
    */
-  MapViewScene(GoogleMapView view) {
+  public MapViewScene(GoogleMapView view) {
     super(new ApplicationPane(view));
 
     this.view = view;

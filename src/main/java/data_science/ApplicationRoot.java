@@ -1,6 +1,7 @@
 package data_science;
 
 import com.lynden.gmapsfx.GoogleMapView;
+import data_science.ui.map.MapViewScene;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -15,11 +16,6 @@ import java.util.concurrent.Executors;
  * @author I.A
  */
 public final class ApplicationRoot extends Application {
-  /**
-   * An {@link ExecutorService} to submit I/O tasks to.
-   */
-  private static ExecutorService ioService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
-
   /**
    * The default resolution of this application.
    */
@@ -63,12 +59,5 @@ public final class ApplicationRoot extends Application {
     stage.setScene(scene);
 
     stage.show();
-  }
-
-  /**
-   * Returns the {@link ExecutorService} used to do I/O work on.
-   */
-  public static ExecutorService getIoService() {
-    return ioService;
   }
 }

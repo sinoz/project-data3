@@ -9,7 +9,7 @@ import java.sql.Connection;
  * A test Hikari based database connection setup.
  * @author I.A
  */
-public final class TestDBConnection {
+public final class TestDbConnection {
   /**
    * Establishes and tests the database connection.
    */
