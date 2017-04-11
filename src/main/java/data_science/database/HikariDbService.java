@@ -4,12 +4,10 @@ import com.google.common.util.concurrent.ListeningExecutorService;
 import com.google.common.util.concurrent.MoreExecutors;
 import com.zaxxer.hikari.HikariDataSource;
 import io.reactivex.Observable;
-import io.reactivex.ObservableOnSubscribe;
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.concurrent.Executors;
 
 /**
@@ -50,16 +48,16 @@ public final class HikariDbService {
   }
 
   /**
-   * Creates a new {@link Observable} that asynchronously computes a connection from the pool
-   * on the {@link HikariDbService#service}.
+   * Synchronously obtains a connection from the pool on the {@link HikariDbService#service}.
    */
-  public static Observable<Connection> obtainConnection() {
-    return Observable.create((ObservableOnSubscribe<Connection>) emitter -> {
-			try {
-				emitter.onNext(source.getConnection());
-			} catch (SQLException e) {
-				emitter.onError(e);
-			}
-		}).subscribeOn(scheduler);
+  public static Connection obtainConnection() throws Exception {
+    return source.getConnection();
   }
+
+  /**
+   * Returns the corresponding {@link Scheduler}.
+   */
+	public static Scheduler scheduler() {
+    return scheduler;
+	}
 }

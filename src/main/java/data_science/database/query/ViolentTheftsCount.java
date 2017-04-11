@@ -21,25 +21,26 @@ public final class ViolentTheftsCount {
 	 * Returns an {@link Observable} that computes the amount of violent bicycle thefts.
 	 */
 	public static Observable<Integer> compute() {
-		return HikariDbService.obtainConnection().map(ViolentTheftsCount::transform);
-	}
+		Observable<Integer> stream = Observable.create(emitter -> {
+			Connection connection = HikariDbService.obtainConnection();
 
-	/**
-	 * Transforms the given {@link Connection} to the amount of bicycle thefts.
-	 */
-	// TODO find a cleaner way to close the db connection through functional composition
-	private static Integer transform(Connection connection) throws Exception {
-		int result = 0;
+			try {
+				try (PreparedStatement stmt = connection.prepareStatement(QUERY)) {
+					ResultSet results = stmt.executeQuery();
 
-		try (PreparedStatement stmt = connection.prepareStatement(QUERY)) {
-			ResultSet results = stmt.executeQuery();
+					if (results.next()) {
+						emitter.onNext(results.getInt("count"));
+					}
+				}
 
-			if (results.next()) {
-				result = results.getInt("count");
+				connection.close(); // returns the connection to the pool so it can be re-used.
+			} catch (Exception e) {
+				emitter.onError(e);
 			}
-		}
 
-		connection.close(); // returns the connection to the pool so it can be re-used.
-		return result;
+			emitter.onComplete();
+		});
+
+		return stream.subscribeOn(HikariDbService.scheduler());
 	}
 }

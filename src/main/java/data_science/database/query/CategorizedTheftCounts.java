@@ -22,29 +22,29 @@ public final class CategorizedTheftCounts {
 	/**
 	 * Returns an {@link Observable} that computes the collection of categorized counts of bicycle thefts.
 	 */
-	public static Observable<ImmutableList<TheftCategory>> compute() {
-		return HikariDbService.obtainConnection().map(CategorizedTheftCounts::compute);
-	}
+	public static Observable<TheftCategory> compute() {
+		Observable<TheftCategory> stream = Observable.create(emitter -> {
+			try {
+				Connection connection = HikariDbService.obtainConnection();
 
-	/**
-	 * Transforms the given {@link Connection} to the computed collection of bicycle theft count.
-	 */
-	// TODO find a cleaner way to close the db connection through functional composition
-	private static ImmutableList<TheftCategory> compute(Connection connection) throws Exception {
-		ImmutableList.Builder<TheftCategory> bldr = ImmutableList.builder();
+				try (PreparedStatement statement = connection.prepareStatement(QUERY)) {
+					ResultSet resultSet = statement.executeQuery();
+					while (resultSet.next()) {
+						String name = resultSet.getString("mk_omschrijving");
+						int count = resultSet.getInt("count");
 
-		try (PreparedStatement statement = connection.prepareStatement(QUERY)) {
-			ResultSet resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				String name = resultSet.getString("mk_omschrijving");
-				int count = resultSet.getInt("count");
+						emitter.onNext(new TheftCategory(name, count));
+					}
+				}
 
-				bldr.add(new TheftCategory(name, count));
+				connection.close();
+			} catch (Exception e) {
+				emitter.onError(e);
 			}
-		}
 
-		connection.close();
+			emitter.onComplete();
+		});
 
-		return bldr.build();
+		return stream.subscribeOn(HikariDbService.scheduler());
 	}
 }
