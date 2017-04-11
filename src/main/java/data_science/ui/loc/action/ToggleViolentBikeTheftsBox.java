@@ -1,5 +1,6 @@
 package data_science.ui.loc.action;
 
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 
 /**
@@ -14,6 +15,14 @@ public final class ToggleViolentBikeTheftsBox extends CheckBox {
 	public ToggleViolentBikeTheftsBox() {
 		super("Show Violent Bike Thefts");
 
+		selectedProperty().addListener(this::stateChange);
 		setIndeterminate(false);
+	}
+
+	/**
+	 * Reacts to a change of state e.g on user input.
+	 */
+	private void stateChange(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+		// TODO
 	}
 }

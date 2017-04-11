@@ -12,7 +12,7 @@ import java.util.concurrent.Executors;
 
 /**
  * A service that provides clients with pooled database connections.
- * @author Whis
+ * @author I.A
  */
 public final class HikariDbService {
   /**

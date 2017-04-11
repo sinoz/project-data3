@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 
 /**
  * A {@link GridPane} that acts as an action bar on the side left to the google maps.
- * @author Whis
+ * @author I.A
  */
 public final class LocationViewActionBar extends GridPane {
 	/**
