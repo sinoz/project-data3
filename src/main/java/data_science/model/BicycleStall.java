@@ -1,7 +1,5 @@
 package data_science.model;
 
-import com.lynden.gmapsfx.javascript.object.LatLong;
-
 /**
  * A single bicycle stall.
  * @author I.A

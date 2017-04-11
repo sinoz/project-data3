@@ -57,10 +57,10 @@ final class HikariDbConfig extends HikariConfig {
 	 * @author I.A
 	 */
 	static class DbConfigJson {
-		public String username;
-		public String password;
-		public int port;
-		public String address;
-		public String database;
+		private String username;
+		private String password;
+		private int port;
+		private String address;
+		private String database;
 	}
 }
