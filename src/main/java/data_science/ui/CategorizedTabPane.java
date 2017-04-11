@@ -28,10 +28,14 @@ public final class CategorizedTabPane extends TabPane {
 		this.graphTab = new GraphPaneTab();
 		this.locTab = new LocationViewTab(mapView);
 
-		setPrefWidth(ApplicationRoot.RESOLUTION.getWidth());
-		setPrefHeight(ApplicationRoot.RESOLUTION.getHeight());
-
 		getTabs().add(locTab);
 		getTabs().add(graphTab);
+
+		sizeToScene();
+	}
+
+	private void sizeToScene() {
+		setPrefWidth(ApplicationRoot.RESOLUTION.getWidth());
+		setPrefHeight(ApplicationRoot.RESOLUTION.getHeight());
 	}
 }

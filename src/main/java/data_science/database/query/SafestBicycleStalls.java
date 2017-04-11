@@ -18,6 +18,7 @@ public final class SafestBicycleStalls {
 	/**
 	 * The query to write.
 	 */
+	// TODO read from sql file
 	private static final String QUERY =
 			"SELECT COUNT(*) AS count, bs.street, bs.latitude, bs.longitude " +
 			"FROM bicycle_thefts AS bt " +

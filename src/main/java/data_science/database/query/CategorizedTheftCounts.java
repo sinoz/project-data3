@@ -17,6 +17,7 @@ public final class CategorizedTheftCounts {
 	/**
 	 * The query to execute.
 	 */
+	// TODO read from sql file
 	private static final String QUERY = "SELECT COUNT(*), mk_omschrijving FROM bicycle_thefts WHERE plaats = 'ROTTERDAM' GROUP BY mk_omschrijving";
 
 	/**

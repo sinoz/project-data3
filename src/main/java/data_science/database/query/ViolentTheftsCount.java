@@ -15,6 +15,7 @@ public final class ViolentTheftsCount {
 	/**
 	 * The query to execute.
 	 */
+	// TODO read from sql file
 	private static final String QUERY = "SELECT COUNT(*) AS count FROM bicycle_thefts WHERE mk_omschrijving LIKE 'DIEFSTAL MET GEWELD%';";
 
 	/**
