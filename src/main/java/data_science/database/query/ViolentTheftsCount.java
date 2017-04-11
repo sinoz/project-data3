@@ -11,7 +11,7 @@ import java.sql.ResultSet;
  * A query to compute the count of amount of violent thefts.
  * @author I.A
  */
-public final class ComputeViolentTheftsCount {
+public final class ViolentTheftsCount {
 	/**
 	 * The query to execute.
 	 */
@@ -20,8 +20,8 @@ public final class ComputeViolentTheftsCount {
 	/**
 	 * Returns an {@link Observable} that computes the amount of violent bicycle thefts.
 	 */
-	public static Observable<Integer> create() {
-		return HikariDbService.obtainConnection().map(ComputeViolentTheftsCount::transform);
+	public static Observable<Integer> compute() {
+		return HikariDbService.obtainConnection().map(ViolentTheftsCount::transform);
 	}
 
 	/**
