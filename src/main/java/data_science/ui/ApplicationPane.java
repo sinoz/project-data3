@@ -1,14 +1,12 @@
 package data_science.ui;
 
 import com.lynden.gmapsfx.GoogleMapView;
-import javafx.scene.Group;
-import javafx.scene.layout.BorderPane;
 import javafx.geometry.Insets;
-import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -57,9 +55,11 @@ public class ApplicationPane extends BorderPane {
       // Maak HBoxes voor de Panes
       HBox hbox1 = new HBox();
       hbox1.getChildren().add(mapPane);
-      hbox1.setAlignment(Pos.CENTER);
       view.setPrefWidth(RESOLUTION.getWidth() * 0.75F);
       view.setPrefHeight(RESOLUTION.getHeight());
+
+      hbox1.setStyle("-fx-background-color: rgba(60,63,65,0.99)");
+      hbox1.setPrefWidth(RESOLUTION.getWidth() * 0.25F);
 
       tabpane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
       borderpane.setCenter(tabpane);
