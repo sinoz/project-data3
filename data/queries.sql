@@ -1,5 +1,5 @@
 /* Hoeveel fietsen worden met geweld gestolen? */
-SELECT COUNT(*)
+SELECT COUNT(*) AS count
 FROM bicycle_thefts
 WHERE mk_omschrijving
 LIKE 'DIEFSTAL MET GEWELD%';

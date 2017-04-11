@@ -4,6 +4,9 @@ import com.google.common.collect.ImmutableList;
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
 import com.lynden.gmapsfx.javascript.object.*;
+import data_science.database.query.ComputeCategorizedTheftCounts;
+import data_science.database.query.ComputeViolentTheftsCount;
+import javafx.application.Platform;
 
 /**
  * A {@link MapComponentInitializedListener} to react to map component events.
@@ -49,5 +52,22 @@ public final class MapViewListener implements MapComponentInitializedListener {
 
       map.addMarker(marker);
     }
+
+    // samples of code fetching some data from the database and presenting it on the screen
+    ComputeViolentTheftsCount.create().subscribe((Integer count) -> {
+      Platform.runLater(() -> {
+        // for now we just create a marker on our map
+        Marker marker = new Marker(new MarkerOptions()
+            .position(new LatLong(51.93014908, 4.466259956))
+            .visible(Boolean.TRUE)
+            .title("IT WORKED"));
+
+        map.addMarker(marker);
+      });
+    });
+
+    ComputeCategorizedTheftCounts.create().subscribe((ImmutableList<ComputeCategorizedTheftCounts.Category> c) -> {
+      c.forEach(System.out::println);
+    });
   }
 }

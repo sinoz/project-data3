@@ -1,6 +1,7 @@
 package data_science;
 
 import com.lynden.gmapsfx.GoogleMapView;
+import data_science.database.HikariDbService;
 import data_science.ui.map.MapViewScene;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
@@ -35,10 +36,29 @@ public final class ApplicationRoot extends Application {
   public void start(Stage stage) throws Exception {
     RESOLUTION = Screen.getPrimary().getVisualBounds(); // TODO turn into a constant
 
-    mapView = new GoogleMapView();
-    scene = new MapViewScene(mapView);
+    initDbService();
+    initUserInterface();
 
     configure(stage);
+  }
+
+  /**
+   * Initializes the {@link HikariDbService}.
+   */
+  private void initDbService() {
+    HikariDbService.initialize();
+  }
+
+  /**
+   * Initializes the user interface.
+   */
+  private void initUserInterface() {
+    if (mapView != null || scene != null) {
+      throw new IllegalStateException();
+    }
+
+    mapView = new GoogleMapView();
+    scene = new MapViewScene(mapView);
   }
 
   /**
