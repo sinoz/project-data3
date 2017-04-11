@@ -1,4 +1,4 @@
-package data_science.ui.map;
+package data_science.ui.loc;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
@@ -11,7 +11,7 @@ import javafx.application.Platform;
  * A {@link MapComponentInitializedListener} to react to map component events.
  * @author I.A
  */
-public final class MapViewListener implements MapComponentInitializedListener {
+public final class LocationViewListener implements MapComponentInitializedListener {
   /**
    * The current {@link GoogleMap} to present.
    */
@@ -23,9 +23,9 @@ public final class MapViewListener implements MapComponentInitializedListener {
   private final GoogleMapView mapView;
 
   /**
-   * Creates a new {@link MapViewListener}.
+   * Creates a new {@link LocationViewListener}.
    */
-  MapViewListener(GoogleMapView mapView) {
+  public LocationViewListener(GoogleMapView mapView) {
     this.mapView = mapView;
   }
 

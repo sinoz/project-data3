@@ -2,15 +2,12 @@ package data_science;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import data_science.database.HikariDbService;
-import data_science.ui.map.MapViewScene;
+import data_science.ui.ApplicationScene;
 import javafx.application.Application;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 /**
  * The main entry point to this application.
@@ -58,7 +55,7 @@ public final class ApplicationRoot extends Application {
     }
 
     mapView = new GoogleMapView();
-    scene = new MapViewScene(mapView);
+    scene = new ApplicationScene(mapView);
   }
 
   /**
