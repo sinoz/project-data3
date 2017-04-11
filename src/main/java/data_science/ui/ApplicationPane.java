@@ -1,7 +1,6 @@
 package data_science.ui;
 
 import com.lynden.gmapsfx.GoogleMapView;
-import javafx.scene.Group;
 import javafx.scene.layout.BorderPane;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,16 +18,21 @@ import static data_science.ApplicationRoot.RESOLUTION;
  * The root pane.
  * @author I.A
  */
+
 public class ApplicationPane extends BorderPane {
   /**
    * Creates a new {@link ApplicationPane} that renders the given {@link GoogleMapView}.
    */
+  BorderPane borderPane = new BorderPane();
   public ApplicationPane(GoogleMapView view) {
-      // Set Location Labels
-      Text locationLabel1 = new Text("Map");
 
-      // Pane voor Map
+      // Set Location Labels
+      Text locationLabel1 = new Text("Checkboxes");
+      Text locationLabel2 = new Text("Graphs");
+
+      // Maak GridPanes
       GridPane mapPane = new GridPane();
+      GridPane graphPane = new GridPane();
 
       // Maak Checkboxes
       CheckBox cb = new CheckBox("Show bike thefts");
@@ -40,6 +44,9 @@ public class ApplicationPane extends BorderPane {
       mapPane.setPadding(new Insets(10, 10, 10, 10));
       mapPane.setVgap(5);
       mapPane.setHgap(5);
+      graphPane.setPadding(new Insets(10, 10, 10, 10));
+      graphPane.setVgap(5);
+      graphPane.setHgap(5);
 
       // Fill mapPane
       mapPane.add(locationLabel1, 0, 0);
@@ -47,17 +54,24 @@ public class ApplicationPane extends BorderPane {
       mapPane.add(cb1,1,1);
       mapPane.setStyle("-fx-font: normal bold 15px 'serif' ");
 
+      // Fill graphPane
+      graphPane.add(locationLabel2, 0, 0);
+      graphPane.setStyle("-fx-font: normal bold 15px 'serif' ");
+
       // Maak tabpane
       BorderPane borderpane = new BorderPane();
       TabPane tabpane = new TabPane();
-      Tab tab = new Tab();
-      tabpane.getTabs().add(tab);
-      tab.setGraphic(new Text("Location"));
+      Tab tab1 = new Tab();
+      tabpane.getTabs().add(tab1);
+      tab1.setGraphic(new Text("Map"));
+      Tab tab2 = new Tab();
+      tabpane.getTabs().add(tab2);
+      tab2.setGraphic(new Text("Graph"));
 
       // Maak HBoxes voor de Panes
       HBox hbox1 = new HBox();
       hbox1.getChildren().add(mapPane);
-      hbox1.setAlignment(Pos.CENTER);
+      hbox1.setPrefWidth(RESOLUTION.getWidth() * 0.25F);
       view.setPrefWidth(RESOLUTION.getWidth() * 0.75F);
       view.setPrefHeight(RESOLUTION.getHeight());
 
@@ -118,7 +132,6 @@ public class ApplicationPane extends BorderPane {
 
       borderpane.setCenter(tabpane);
  */
-
 
 /*
       Text locationLabel = new Text("Area");

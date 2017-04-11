@@ -8,7 +8,6 @@ import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import data_science.ui.ApplicationPane;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -47,7 +46,7 @@ public final class ApplicationRoot extends Application {
    * Initializes the {@link HikariDbService}.
    */
   private void initDbService() {
-    HikariDbService.initialize();
+    //HikariDbService.initialize();
   }
 
   /**
