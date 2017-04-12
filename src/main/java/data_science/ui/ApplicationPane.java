@@ -18,7 +18,6 @@ public final class ApplicationPane extends Pane {
 	 */
 	ApplicationPane(GoogleMapView view) {
 		this.tabs = new CategorizedTabPane(view);
-		tabs.setStyle("-fx-background-color: rgba(60,63,65,0.99);");
 
 		getChildren().add(tabs);
 	}

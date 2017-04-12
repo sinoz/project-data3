@@ -26,15 +26,17 @@ public final class CategorizedTabPane extends TabPane {
 	 */
 	CategorizedTabPane(GoogleMapView mapView) {
 		this.graphTab = new GraphPaneTab();
-        graphTab.setStyle("-fx-background-color: rgba(60,63,65,0.99)");
-
-        this.locTab = new LocationViewTab(mapView);
-        locTab.setStyle("-fx-background-color: rgba(60,63,65,0.99)");
+		this.locTab = new LocationViewTab(mapView);
 
 		getTabs().add(locTab);
 		getTabs().add(graphTab);
 
+		applyStyling();
 		sizeToScene();
+	}
+
+	private void applyStyling() {
+		setStyle("-fx-background-color: rgba(60,63,65,0.99);");
 	}
 
 	private void sizeToScene() {
