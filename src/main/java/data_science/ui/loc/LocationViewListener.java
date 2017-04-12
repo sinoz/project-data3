@@ -2,10 +2,9 @@ package data_science.ui.loc;
 
 import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.MapComponentInitializedListener;
-import com.lynden.gmapsfx.javascript.object.*;
-import data_science.database.query.SafestBicycleStalls;
-import data_science.model.BicycleStall;
-import javafx.application.Platform;
+import com.lynden.gmapsfx.javascript.object.GoogleMap;
+import com.lynden.gmapsfx.javascript.object.LatLong;
+import com.lynden.gmapsfx.javascript.object.MapOptions;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 

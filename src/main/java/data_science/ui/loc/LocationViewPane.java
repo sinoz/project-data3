@@ -4,7 +4,6 @@ import com.lynden.gmapsfx.GoogleMapView;
 import data_science.ApplicationRoot;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Pane;
 
 /**
  * A {@link BorderPane} to position the {@link LocationViewActionBar} onto the

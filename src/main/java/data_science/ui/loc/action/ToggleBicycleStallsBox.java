@@ -9,7 +9,6 @@ import data_science.ui.loc.LocationViewActionBar;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
-import javafx.scene.paint.Color;
 
 /**
  * A {@link CheckBox} for a user to toggle whether to show all bicycle stalls.

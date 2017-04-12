@@ -1,7 +1,6 @@
 package data_science.ui.loc;
 
 import com.lynden.gmapsfx.GoogleMapView;
-import data_science.ApplicationRoot;
 import data_science.ui.CategorizedTab;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
