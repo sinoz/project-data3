@@ -22,6 +22,13 @@ FROM bicycle_thefts
 GROUP BY begintijd
 ORDER BY count DESC;
 
+/* Welke fietsdiefstallen zijn er bij fietstrommels gepleegd? */
+SELECT bs.street, bs.latitude, bs.longitude
+FROM bicycle_thefts AS bt
+INNER JOIN bicycle_stalls AS bs
+ON bs.street = bt.straat AND bs.latitude <> 0.0 AND bs.longitude <> 0.0
+GROUP BY bs.street, bs.latitude, bs.longitude
+
 /* Waar kan je je fiets het veiligst stallen in Rotterdam? */
 SELECT COUNT(*) AS count, bs.street, bs.latitude, bs.longitude
 FROM bicycle_thefts AS bt

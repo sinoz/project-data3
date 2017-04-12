@@ -1,7 +1,8 @@
 package data_science.ui.loc;
 
-import data_science.ui.loc.action.ToggleBikeTheftsBox;
-import data_science.ui.loc.action.ToggleViolentBikeTheftsBox;
+import data_science.ui.loc.action.ToggleBicycleStallsBox;
+import data_science.ui.loc.action.ToggleTheftsFromStallsBox;
+import data_science.ui.loc.action.ToggleSafestBicycleStallsBox;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
@@ -12,14 +13,19 @@ import javafx.scene.layout.GridPane;
  */
 public final class LocationViewActionBar extends GridPane {
 	/**
-	 * A checkbox to toggle whether to showcase all bike thefts.
+	 * A checkbox to toggle whether to showcase all bicycle stalls.
 	 */
-	private final CheckBox toggleBikeThefts = new ToggleBikeTheftsBox();
+	private final CheckBox bicycleStalls = new ToggleBicycleStallsBox(this);
 
 	/**
-	 * A checkbox to toggle whether to showcase all bike thefts that involved violence.
+	 * A checkbox to toggle whether to showcase bike thefts that occurred at bicycle stalls.
 	 */
-	private final CheckBox violentBikeTheftsBox = new ToggleViolentBikeTheftsBox();
+	private final CheckBox bicycleTheftsFromStalls = new ToggleTheftsFromStallsBox(this);
+
+	/**
+	 * TODO
+	 */
+	private final CheckBox top3SafestBicycleStalls = new ToggleSafestBicycleStallsBox(this);
 
 	/**
 	 * Creates a new {@link LocationViewActionBar}.
@@ -35,13 +41,26 @@ public final class LocationViewActionBar extends GridPane {
 	}
 
 	private void addSubordinates() {
-		add(toggleBikeThefts,1,0);
-		add(violentBikeTheftsBox,1,1);
+		add(bicycleStalls,1,0);
+		add(bicycleTheftsFromStalls,1,1);
+		add(top3SafestBicycleStalls,1,2);
 	}
 
 	private void addPadding() {
 		setPadding(new Insets(10, 10, 10, 10));
 		setVgap(5);
 		setHgap(5);
+	}
+
+	public CheckBox getSafestBicycleStallsBox() {
+		return top3SafestBicycleStalls;
+	}
+
+	public CheckBox getBicycleStallsBox() {
+		return bicycleStalls;
+	}
+
+	public CheckBox getBicycleTheftsFromStallsBox() {
+		return bicycleTheftsFromStalls;
 	}
 }

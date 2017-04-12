@@ -7,6 +7,8 @@ import data_science.database.query.SafestBicycleStalls;
 import data_science.model.BicycleStall;
 import javafx.application.Platform;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 /**
  * A {@link MapComponentInitializedListener} to react to map component events.
  * @author I.A
@@ -18,6 +20,12 @@ public final class LocationViewListener implements MapComponentInitializedListen
   private GoogleMap map;
 
   /**
+   * An atomically mutable flag to indicate whether the map view has been
+   * successfully initialized or not.
+   */
+  private final AtomicBoolean viewIsInitialized;
+
+  /**
    * The {@link GoogleMapView} to present the {@link GoogleMap} on.
    */
   private final GoogleMapView mapView;
@@ -25,27 +33,42 @@ public final class LocationViewListener implements MapComponentInitializedListen
   /**
    * Creates a new {@link LocationViewListener}.
    */
-  public LocationViewListener(GoogleMapView mapView) {
+  public LocationViewListener(GoogleMapView mapView, AtomicBoolean viewIsInitialized) {
     this.mapView = mapView;
+    this.viewIsInitialized = viewIsInitialized;
   }
 
   @Override
   public void mapInitialized() {
     //Set the initial properties of the map.
-    MapOptions mapOptions = new MapOptions();
-    mapOptions.center(new LatLong(51.934875, 4.3667926)).overviewMapControl(false).panControl(false).rotateControl(false).scaleControl(false).streetViewControl(false).zoomControl(false).zoom(13);
+    map = mapView.createMap(initialMapViewSettings());
 
-    map = mapView.createMap(mapOptions);
+    // informs the scene that the map view has successfully been initialized
+    viewIsInitialized.compareAndSet(false, true);
+  }
 
-    // samples of code fetching some data from the database and presenting it on the screen
-    SafestBicycleStalls.compute().take(3).subscribe((BicycleStall s) -> {
-      Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
-        // for now we just create a marker on our map
-        LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
-        Marker marker = new Marker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE));
+  /**
+   * Returns the default {@link MapOptions} for the {@link GoogleMap}.
+   */
+  private MapOptions initialMapViewSettings() {
+    MapOptions opt = new MapOptions();
 
-        map.addMarker(marker);
-      });
-    });
+    opt.center(new LatLong(51.934875, 4.3667926));
+    opt.overviewMapControl(false);
+    opt.panControl(false);
+    opt.rotateControl(false);
+    opt.scaleControl(false);
+    opt.streetViewControl(false);
+    opt.zoomControl(false);
+    opt.zoom(13);
+
+    return opt;
+  }
+
+  /**
+   * Returns the state of the {@link GoogleMap}.
+   */
+  public GoogleMap getMap() {
+    return map;
   }
 }
