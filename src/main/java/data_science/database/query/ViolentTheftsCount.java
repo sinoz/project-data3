@@ -23,9 +23,7 @@ public final class ViolentTheftsCount {
 	 */
 	public static Observable<Integer> compute() {
 		Observable<Integer> stream = Observable.create(emitter -> {
-			Connection connection = HikariDbService.obtainConnection();
-
-			try {
+			try (Connection connection = HikariDbService.obtainConnection()) {
 				try (PreparedStatement stmt = connection.prepareStatement(QUERY)) {
 					ResultSet results = stmt.executeQuery();
 
@@ -33,8 +31,6 @@ public final class ViolentTheftsCount {
 						emitter.onNext(results.getInt("count"));
 					}
 				}
-
-				connection.close(); // returns the connection to the pool so it can be re-used.
 			} catch (Exception e) {
 				emitter.onError(e);
 			}

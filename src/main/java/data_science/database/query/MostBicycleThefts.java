@@ -16,9 +16,7 @@ public final class MostBicycleThefts {
 	 */
 	public static Observable<BicycleTheft> compute() {
 		Observable<BicycleTheft> thefts = Observable.create(emitter -> {
-			Connection connection = HikariDbService.obtainConnection();
-
-			try {
+			try (Connection connection = HikariDbService.obtainConnection()) {
 				// TODO
 			} catch (Exception e) {
 				emitter.onError(e);

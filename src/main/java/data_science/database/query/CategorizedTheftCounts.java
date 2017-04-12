@@ -24,9 +24,7 @@ public final class CategorizedTheftCounts {
 	 */
 	public static Observable<TheftCategory> compute() {
 		Observable<TheftCategory> stream = Observable.create(emitter -> {
-			try {
-				Connection connection = HikariDbService.obtainConnection();
-
+			try (Connection connection = HikariDbService.obtainConnection()) {
 				try (PreparedStatement statement = connection.prepareStatement(QUERY)) {
 					ResultSet resultSet = statement.executeQuery();
 					while (resultSet.next()) {
@@ -36,8 +34,6 @@ public final class CategorizedTheftCounts {
 						emitter.onNext(new TheftCategory(name, count));
 					}
 				}
-
-				connection.close();
 			} catch (Exception e) {
 				emitter.onError(e);
 			}

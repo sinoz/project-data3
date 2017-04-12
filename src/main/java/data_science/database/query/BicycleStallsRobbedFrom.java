@@ -28,9 +28,7 @@ public final class BicycleStallsRobbedFrom {
 	 */
 	public static Observable<BicycleStall> compute() {
 		Observable<BicycleStall> stream = Observable.create(emitter -> {
-			try {
-				Connection connection = HikariDbService.obtainConnection();
-
+			try (Connection connection = HikariDbService.obtainConnection()) {
 				try (PreparedStatement statement = connection.prepareStatement(QUERY)) {
 					ResultSet resultSet = statement.executeQuery();
 					while (resultSet.next()) {
@@ -42,8 +40,6 @@ public final class BicycleStallsRobbedFrom {
 						emitter.onNext(new BicycleStall(streetName, latitude, longitude));
 					}
 				}
-
-				connection.close();
 			} catch (Exception e) {
 				emitter.onError(e);
 			}
