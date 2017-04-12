@@ -1,6 +1,5 @@
 package data_science.database.query;
 
-import com.google.common.collect.ImmutableList;
 import data_science.database.HikariDbService;
 import data_science.model.TheftCategory;
 import io.reactivex.Observable;

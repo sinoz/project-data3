@@ -1,13 +1,11 @@
 package data_science.database;
 
-import com.google.common.util.concurrent.ListeningExecutorService;
-import com.google.common.util.concurrent.MoreExecutors;
 import com.zaxxer.hikari.HikariDataSource;
-import io.reactivex.Observable;
 import io.reactivex.Scheduler;
 import io.reactivex.schedulers.Schedulers;
 
 import java.sql.Connection;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
@@ -23,7 +21,7 @@ public final class HikariDbService {
   /**
    * The service to submit database connection requests to.
    */
-  private static ListeningExecutorService service = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(AMT_WORKERS));
+  private static ExecutorService service = Executors.newFixedThreadPool(AMT_WORKERS);
 
   /**
    * The {@link Scheduler} to wrap around the {@link HikariDbService#service}.
