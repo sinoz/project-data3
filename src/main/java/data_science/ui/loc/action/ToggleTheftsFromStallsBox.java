@@ -31,7 +31,7 @@ public final class ToggleTheftsFromStallsBox extends CheckBox {
 
 		this.actionBar = actionBar;
 
-		setTextFill(Color.WHITE);
+		//setTextFill(Color.WHITE);
 
 		selectedProperty().addListener(this::stateChange);
 		setIndeterminate(false);

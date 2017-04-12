@@ -36,7 +36,7 @@ public final class CategorizedTabPane extends TabPane {
 	}
 
 	private void applyStyling() {
-		setStyle("-fx-background-color: rgba(60,63,65,0.99);");
+		//setStyle("-fx-background-color: rgba(60,63,65,0.99);");
 	}
 
 	private void sizeToScene() {

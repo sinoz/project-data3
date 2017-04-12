@@ -14,7 +14,7 @@ public abstract class CategorizedTab extends Tab {
 	 */
 	public CategorizedTab(String categoryName) {
 		Text text = new Text(categoryName);
-		text.setFill(textColor());
+		//text.setFill(textColor());
 
 		setGraphic(text);
 	}

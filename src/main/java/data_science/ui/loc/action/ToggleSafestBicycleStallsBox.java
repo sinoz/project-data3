@@ -29,7 +29,7 @@ public final class ToggleSafestBicycleStallsBox extends CheckBox {
 
 		this.actionBar = locationViewActionBar;
 
-		setTextFill(Color.WHITE);
+		//setTextFill(Color.WHITE);
 
 		selectedProperty().addListener(this::stateChange);
 		setIndeterminate(false);

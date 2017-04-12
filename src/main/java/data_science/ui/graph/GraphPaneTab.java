@@ -27,7 +27,7 @@ public final class GraphPaneTab extends CategorizedTab {
 	}
 
 	private void applyStyling() {
-		setStyle("-fx-background-color: rgba(60,63,65,0.99)");
+		//setStyle("-fx-background-color: rgba(60,63,65,0.99)");
 	}
 
 	@Override
