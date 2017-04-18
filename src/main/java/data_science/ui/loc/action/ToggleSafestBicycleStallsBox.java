@@ -24,7 +24,7 @@ public final class ToggleSafestBicycleStallsBox extends CheckBox {
 	 * Creates a new {@link ToggleSafestBicycleStallsBox}.
 	 */
 	public ToggleSafestBicycleStallsBox(LocationViewActionBar locationViewActionBar) {
-		super("Show Top 3 Safest Bicycle Stalls");
+		super("Show Top 5 Safest Bicycle Stalls");
 
 		this.actionBar = locationViewActionBar;
 
@@ -52,7 +52,7 @@ public final class ToggleSafestBicycleStallsBox extends CheckBox {
 	}
 
 	private void applyMarkers(ApplicationScene scene) {
-		SafestBicycleStalls.compute().take(3).subscribe((BicycleStall s) -> {
+		SafestBicycleStalls.compute().take(5).subscribe((BicycleStall s) -> {
 			Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
 				LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 

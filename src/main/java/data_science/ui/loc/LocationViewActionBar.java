@@ -3,6 +3,7 @@ package data_science.ui.loc;
 import data_science.ui.loc.action.ToggleBicycleStallsBox;
 import data_science.ui.loc.action.ToggleTheftsFromStallsBox;
 import data_science.ui.loc.action.ToggleSafestBicycleStallsBox;
+import data_science.ui.loc.action.ToggleLeastSafeBicycleStallsBox;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
@@ -25,7 +26,12 @@ public final class LocationViewActionBar extends GridPane {
 	/**
 	 * A checkbox to toggle whether to showcase the top 3 safest bicycle stalls.
 	 */
-	private final CheckBox top3SafestBicycleStalls = new ToggleSafestBicycleStallsBox(this);
+	private final CheckBox top5SafestBicycleStalls = new ToggleSafestBicycleStallsBox(this);
+
+	/**
+	 * A checkbox to toggle whether to showcase the top 5 least safe bicycle stalls.
+	 */
+	private final CheckBox top5LeastSafeBicycleStalls = new ToggleLeastSafeBicycleStallsBox(this);
 
 	/**
 	 * Creates a new {@link LocationViewActionBar}.
@@ -43,7 +49,8 @@ public final class LocationViewActionBar extends GridPane {
 	private void addSubordinates() {
 		add(bicycleStalls,1,0);
 		add(bicycleTheftsFromStalls,1,1);
-		add(top3SafestBicycleStalls,1,2);
+		add(top5SafestBicycleStalls,1,2);
+		add(top5LeastSafeBicycleStalls, 1, 3);
 	}
 
 	private void addPadding() {
@@ -53,7 +60,7 @@ public final class LocationViewActionBar extends GridPane {
 	}
 
 	public CheckBox getSafestBicycleStallsBox() {
-		return top3SafestBicycleStalls;
+		return top5SafestBicycleStalls;
 	}
 
 	public CheckBox getBicycleStallsBox() {
