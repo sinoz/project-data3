@@ -1,21 +1,16 @@
 package data_science.ui.loc;
 
-import data_science.ui.loc.action.ToggleBicycleStallsBox;
-import data_science.ui.loc.action.ToggleTheftsFromStallsBox;
-import data_science.ui.loc.action.ToggleSafestBicycleStallsBox;
-import data_science.ui.loc.action.ToggleLeastSafeBicycleStallsBox;
-import data_science.ui.loc.action.MonthSelectionDropdown;
-import data_science.ui.loc.action.DaySelectionDropdown;
-import javafx.collections.FXCollections;
+import data_science.ui.loc.action.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.*;
+import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 /**
  * A {@link GridPane} that acts as an action bar on the side left to the google maps.
  * @author I.A
+ * @author Jasper Wijnhoven
  */
 public final class LocationViewActionBar extends GridPane {
 	/**
@@ -62,6 +57,13 @@ public final class LocationViewActionBar extends GridPane {
      * Creates a new {@link LocationViewActionBar}.
      */
 	LocationViewActionBar() {
+	    GridPane subGrid = new GridPane();
+        subGrid.setHgap(25);
+        subGrid.add(monthLabel,0,0);
+        subGrid.add(selectMonth,0,1);
+        subGrid.add(dayLabel,1,0);
+        subGrid.add(selectDay,1,1);
+        this.add(subGrid,1,4);
 		addPadding();
 		addSubordinates();
 		applyStyling();
@@ -76,12 +78,6 @@ public final class LocationViewActionBar extends GridPane {
 		add(bicycleTheftsFromStalls,1,1);
 		add(top5SafestBicycleStalls,1,2);
 		add(top5LeastSafeBicycleStalls, 1, 3);
-        add(new Label(), 1, 4);
-        add(new Label(), 2, 4);
-		add(selectMonth,1,6);
-        add(monthLabel,1,5);
-		add(selectDay,2,6);
-        add(dayLabel,2,5);
 	}
 
 	private void addPadding() {
@@ -101,4 +97,8 @@ public final class LocationViewActionBar extends GridPane {
 	public CheckBox getBicycleTheftsFromStallsBox() {
 		return bicycleTheftsFromStalls;
 	}
+
+    public CheckBox getLeastSafeBicycleStallsBox() {
+        return top5LeastSafeBicycleStalls;
+    }
 }
