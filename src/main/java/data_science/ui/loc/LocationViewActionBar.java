@@ -4,9 +4,14 @@ import data_science.ui.loc.action.ToggleBicycleStallsBox;
 import data_science.ui.loc.action.ToggleTheftsFromStallsBox;
 import data_science.ui.loc.action.ToggleSafestBicycleStallsBox;
 import data_science.ui.loc.action.ToggleLeastSafeBicycleStallsBox;
+import data_science.ui.loc.action.MonthSelectionDropdown;
+import data_science.ui.loc.action.DaySelectionDropdown;
+import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 /**
  * A {@link GridPane} that acts as an action bar on the side left to the google maps.
@@ -31,11 +36,31 @@ public final class LocationViewActionBar extends GridPane {
 	/**
 	 * A checkbox to toggle whether to showcase the top 5 least safe bicycle stalls.
 	 */
-	private final CheckBox top5LeastSafeBicycleStalls = new ToggleLeastSafeBicycleStallsBox(this);
+    private final CheckBox top5LeastSafeBicycleStalls = new ToggleLeastSafeBicycleStallsBox(this);
 
-	/**
-	 * Creates a new {@link LocationViewActionBar}.
-	 */
+    /**
+     * Dropdown menu to select a month.
+     */
+    private final ComboBox selectMonth = new MonthSelectionDropdown(this);
+
+    /**
+     * Dropdown menu to select a day.
+     */
+    private final ComboBox selectDay = new DaySelectionDropdown(this);
+
+    /**
+     * Text for Dropdown month.
+     */
+    private final Text monthLabel = new Text("Month");
+
+    /**
+     * Text for Dropdown day.
+     */
+    private final Text dayLabel = new Text("Day");
+
+    /**
+     * Creates a new {@link LocationViewActionBar}.
+     */
 	LocationViewActionBar() {
 		addPadding();
 		addSubordinates();
@@ -51,6 +76,12 @@ public final class LocationViewActionBar extends GridPane {
 		add(bicycleTheftsFromStalls,1,1);
 		add(top5SafestBicycleStalls,1,2);
 		add(top5LeastSafeBicycleStalls, 1, 3);
+        add(new Label(), 1, 4);
+        add(new Label(), 2, 4);
+		add(selectMonth,1,6);
+        add(monthLabel,1,5);
+		add(selectDay,2,6);
+        add(dayLabel,2,5);
 	}
 
 	private void addPadding() {

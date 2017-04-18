@@ -27,6 +27,7 @@ public final class CategorizedTabPane extends TabPane {
 	CategorizedTabPane(GoogleMapView mapView) {
 		this.graphTab = new GraphPaneTab();
 		this.locTab = new LocationViewTab(mapView);
+        this.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 
 		getTabs().add(locTab);
 		getTabs().add(graphTab);
