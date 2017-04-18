@@ -69,20 +69,6 @@ public final class GraphViewPane extends BorderPane {
 
 		});
 		setLeft(tree);
-		// ObservableList<PieChart.Data> pieChartData =
-		// FXCollections.observableArrayList(
-		// new PieChart.Data("Diefstallen zonder geweld - " + 60 + "%", 60),
-		// new PieChart.Data("Diefstallen met geweld - " + 40 + "%", 40));
-		//
-		// PieChart pieChart = new PieChart(pieChartData);
-		// pieChart.setLegendSide(Side.BOTTOM);
-		//
-		// pieChart.setTitle("Fietsdiefstallen");
-		// pieChart.setClockwise(true);
-		// pieChart.setLabelsVisible(true);
-		// pieChart.setLabelLineLength(40);
-		//
-		// VBox vbox = new VBox(pieChart);
-		// setCenter(vbox);
+
 	}
 }
