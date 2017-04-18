@@ -52,7 +52,7 @@ public final class LocationViewListener implements MapComponentInitializedListen
   private MapOptions initialMapViewSettings() {
     MapOptions opt = new MapOptions();
 
-    opt.center(new LatLong(51.934875, 4.3667926));
+    opt.center(new LatLong(51.9200000, 4.4700000));
     opt.overviewMapControl(false);
     opt.panControl(false);
     opt.rotateControl(false);

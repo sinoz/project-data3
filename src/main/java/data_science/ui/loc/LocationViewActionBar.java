@@ -47,7 +47,7 @@ public final class LocationViewActionBar extends GridPane {
 	}
 
 	private void addPadding() {
-		setPadding(new Insets(10, 10, 10, 10));
+		setPadding(new Insets(20, 10, 10, 15));
 		setVgap(5);
 		setHgap(5);
 	}
