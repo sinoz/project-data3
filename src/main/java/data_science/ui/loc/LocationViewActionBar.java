@@ -13,6 +13,8 @@ import javafx.scene.text.Text;
  * @author Jasper Wijnhoven
  */
 public final class LocationViewActionBar extends GridPane {
+
+	private final GridPane comboBox = new LocationViewComboPane();
 	/**
 	 * A checkbox to toggle whether to showcase all bicycle stalls.
 	 */
@@ -34,43 +36,17 @@ public final class LocationViewActionBar extends GridPane {
     private final CheckBox top5LeastSafeBicycleStalls = new ToggleLeastSafeBicycleStallsBox(this);
 
     /**
-     * Dropdown menu to select a month.
-     */
-    private final ComboBox selectMonth = new MonthSelectionDropdown(this);
-
-    /**
-     * Dropdown menu to select a day.
-     */
-    private final ComboBox selectDay = new DaySelectionDropdown(this);
-
-    /**
-     * Text for Dropdown month.
-     */
-    private final Text monthLabel = new Text("Month");
-
-    /**
-     * Text for Dropdown day.
-     */
-    private final Text dayLabel = new Text("Day");
-
-    /**
      * Creates a new {@link LocationViewActionBar}.
      */
 	LocationViewActionBar() {
-	    GridPane subGrid = new GridPane();
-        subGrid.setHgap(25);
-        subGrid.add(monthLabel,0,0);
-        subGrid.add(selectMonth,0,1);
-        subGrid.add(dayLabel,1,0);
-        subGrid.add(selectDay,1,1);
-        this.add(subGrid,1,4);
+        this.add(comboBox,1,4);
 		addPadding();
 		addSubordinates();
 		applyStyling();
 	}
 
 	private void applyStyling() {
-		setStyle("-fx-font: normal bold 15px 'serif' ");
+		setStyle("-fx-font: normal bold 16px 'Segoe UI' ");
 	}
 
 	private void addSubordinates() {

@@ -5,7 +5,7 @@ import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import data_science.database.query.AllBicycleStalls;
 import data_science.model.BicycleStall;
 import data_science.ui.ApplicationScene;
-import data_science.ui.loc.LocationViewActionBar;
+import data_science.ui.loc.LocationViewComboPane;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
@@ -18,13 +18,13 @@ public final class DaySelectionDropdown extends ComboBox {
     /**
      * The action bar this combobox belongs to.
      */
-    private final LocationViewActionBar actionBar;
+    private final LocationViewComboPane comboBox;
 
     /**
      * Creates a new {@link DaySelectionDropdown}.
      */
-    public DaySelectionDropdown(LocationViewActionBar locationViewActionBar) {
-        this.actionBar = locationViewActionBar;
+    public DaySelectionDropdown(LocationViewComboPane locationViewComboBox) {
+        this.comboBox = locationViewComboBox;
 
         this.getItems().addAll(
                 "*", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"

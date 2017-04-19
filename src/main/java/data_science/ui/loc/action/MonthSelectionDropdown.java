@@ -5,7 +5,7 @@ import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import data_science.database.query.AllBicycleStalls;
 import data_science.model.BicycleStall;
 import data_science.ui.ApplicationScene;
-import data_science.ui.loc.LocationViewActionBar;
+import data_science.ui.loc.LocationViewComboPane;
 import javafx.application.Platform;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.ComboBox;
@@ -19,13 +19,13 @@ public final class MonthSelectionDropdown extends ComboBox {
     /**
      * The action bar this combobox belongs to.
      */
-    private final LocationViewActionBar actionBar;
+    private final LocationViewComboPane comboBox;
 
     /**
      * Creates a new {@link MonthSelectionDropdown}.
      */
-    public MonthSelectionDropdown(LocationViewActionBar locationViewActionBar) {
-        this.actionBar = locationViewActionBar;
+    public MonthSelectionDropdown(LocationViewComboPane locationViewComboBox) {
+        this.comboBox = locationViewComboBox;
 
         this.getItems().addAll(
                 "*", "4", "5", "6"
