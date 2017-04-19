@@ -3,7 +3,6 @@ package data_science.database.query;
 import data_science.database.HikariDbService;
 import data_science.model.BicycleStall;
 import io.reactivex.Observable;
-import io.reactivex.schedulers.Schedulers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

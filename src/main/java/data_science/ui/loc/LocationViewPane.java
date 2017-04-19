@@ -29,8 +29,8 @@ public final class LocationViewPane extends BorderPane {
 
 		setLeft(actionBar);
 		setRight(mapView);
-
 		sizeUpMap();
+
 	}
 
 	private void sizeUpMap() {
