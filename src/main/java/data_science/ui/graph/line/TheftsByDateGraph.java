@@ -1,20 +1,34 @@
 package data_science.ui.graph.line;
 
+import data_science.database.query.graph.TheftCountsByDateQuery;
+import data_science.database.query.graph.TheftCountsByTimestampQuery;
+import data_science.model.TheftTimestamp;
+import javafx.application.Platform;
 import javafx.geometry.Side;
-import javafx.scene.chart.*;
+import javafx.scene.chart.Axis;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.NumberAxis;
+
+import java.util.List;
 
 /**
- * A {@link LineChart} to present a graph that shows the theft dates.
+ * A {@link LineChart} to present a graph that shows the theft timestamps.
  *
  * @author I.A
  * @author Jasper Wijnhoven
  */
-public final class TheftsByDateGraph extends LineChart<Number, Number> {
+public final class TheftsByDateGraph extends LineChart<String, Number> {
+	/**
+	 * The amount of timestamps to take and present in the graph from our stream of timestamps.
+	 */
+	private static final int COMPUTE_LIMIT = 25;
+
 	/**
 	 * A factory method to produce a new {@link TheftsByDateGraph} chart.
 	 */
 	public static TheftsByDateGraph create() {
-		NumberAxis xAxis = new NumberAxis();
+		Axis<String> xAxis = new CategoryAxis();
 		NumberAxis yAxis = new NumberAxis();
 
 		xAxis.setLabel("Date");
@@ -26,27 +40,44 @@ public final class TheftsByDateGraph extends LineChart<Number, Number> {
 	/**
 	 * Creates a new {@link TheftsByDateGraph}.
 	 */
-	private TheftsByDateGraph(NumberAxis xAxis, NumberAxis yAxis) {
+	private TheftsByDateGraph(Axis<String> xAxis, NumberAxis yAxis) {
 		super(xAxis, yAxis);
 
 		configureGraph();
 		fillData();
 	}
 
+	/**
+	 * Configures this graph.
+	 */
 	private void configureGraph() {
 		setLegendSide(Side.BOTTOM);
-		setTitle("Amount bicycle thefts sorted by date");
+		setTitle("Amount (AVG) bicycle thefts sorted by date");
 	}
 
 	/**
 	 * Fills data inside of the graph by computing it and transforming it to a suitable presentable format.
 	 */
 	private void fillData() {
-		getXAxis().setLabel("Date");
-		XYChart.Series<Number, Number> series = new XYChart.Series<>();
+		TheftCountsByDateQuery.compute()
+				.take(COMPUTE_LIMIT) // limit our results
+				.toList() // blocks until all data has been computed to turn it into a list of theft timestamps
+				.map(this::theftTimestamps2ChartSeries) // transform the list to a suitable presentation format (PieChart.Data)
+				.subscribe((Series<String, Number> data) -> Platform.runLater(() -> getData().add(data)));
+	}
+
+	/**
+	 * Transforms the given {@link List} of {@link TheftTimestamp}s to a suitable {@link Series}
+	 * format that can be presented inside of this graph.
+	 */
+	private Series<String, Number> theftTimestamps2ChartSeries(List<TheftTimestamp> stamps) {
+		Series<String, Number> series = new Series<>();
+
 		series.setName("Bicycle Thefts");
-		series.getData().add(new XYChart.Data<>(1, 20));
-		series.getData().add(new XYChart.Data<>(2, 25));
-		getData().add(series);
+
+		stamps.stream().map((TheftTimestamp stamp) -> new Data<String, Number>(stamp.getTimestamp(), stamp.getCount()))
+				.forEach(stringIntegerData -> series.getData().add(stringIntegerData));
+
+		return series;
 	}
 }
