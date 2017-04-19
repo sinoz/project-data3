@@ -77,7 +77,7 @@ public class JavafxSample extends Application {
 		borderpane.setCenter(tabpane);
 		root.getChildren().add(borderpane);
 
-		stage.setTitle("teringzooi");
+		stage.setTitle("leuke dingen");
 
 		stage.setScene(scene);
 

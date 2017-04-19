@@ -12,7 +12,8 @@ import javafx.scene.control.ComboBox;
 
 /**
  * A {@link ComboBox} for a user to select results by month
- * @author J
+ * @author I.A
+ * @author Jasper Wijnhoven
  */
 public final class DaySelectionDropdown extends ComboBox {
     /**

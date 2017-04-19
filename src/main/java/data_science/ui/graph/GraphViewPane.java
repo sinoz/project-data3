@@ -1,6 +1,7 @@
 package data_science.ui.graph;
 
 import data_science.ui.graph.pie.CategorizedTheftsGraph;
+import data_science.ui.graph.pie.TheftsByDate;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
@@ -20,7 +21,7 @@ public final class GraphViewPane extends BorderPane {
 	GraphViewPane() {
 		TreeItem<String> rootItem = new TreeItem<>("Inbox", null);
 		rootItem.setExpanded(true);
-		rootItem.getChildren().addAll(Arrays.asList(new TreeItem<>("Categorized Theft Counts"), new TreeItem<>("Some other bs")));
+		rootItem.getChildren().addAll(Arrays.asList(new TreeItem<>("Categorized Theft Counts"), new TreeItem<>("Some other bs"), new TreeItem<>("Fiets Diefstallen")));
 
 		TreeView<String> tree = new TreeView<>(rootItem);
 
@@ -30,6 +31,9 @@ public final class GraphViewPane extends BorderPane {
 					presentCategorizedTheftsGraph();
 
 					break;
+
+                case "Fiets Diefstallen":
+                    presentTheftsByDate();
 			}
 		});
 
@@ -42,4 +46,8 @@ public final class GraphViewPane extends BorderPane {
 	private void presentCategorizedTheftsGraph() {
 		setCenter(new VBox(new CategorizedTheftsGraph()));
 	}
+
+    private void presentTheftsByDate() {
+        setCenter(new VBox(TheftsByDate.create()));
+    }
 }
