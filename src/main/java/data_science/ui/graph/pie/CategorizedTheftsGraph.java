@@ -35,7 +35,7 @@ public final class CategorizedTheftsGraph extends PieChart {
 	 */
 	private void configureGraph() {
 		setLegendSide(Side.BOTTOM);
-		setTitle("Aantal fietsdiefstallen per categorie");
+		setTitle("Amount Bicycle Thefts Sorted By Category");
 		setClockwise(true);
 		setLabelsVisible(true);
 		setLabelLineLength(40);
