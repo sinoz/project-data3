@@ -18,7 +18,7 @@ public final class GraphViewPane extends BorderPane {
 	 * Creates a new {@link GraphViewPane}.
 	 */
 	GraphViewPane() {
-		TreeItem<String> rootItem = new TreeItem<>("Inbox", null);
+		TreeItem<String> rootItem = new TreeItem<>("Data", null);
 		rootItem.setExpanded(true);
 		rootItem.getChildren().addAll(Arrays.asList(new TreeItem<>("Categorized Theft Counts"), new TreeItem<>("Some other bs")));
 
@@ -37,7 +37,7 @@ public final class GraphViewPane extends BorderPane {
 	}
 
 	/**
-	 * TODO
+	 * Presents the {@link CategorizedTheftsGraph}.
 	 */
 	private void presentCategorizedTheftsGraph() {
 		setCenter(new VBox(new CategorizedTheftsGraph()));

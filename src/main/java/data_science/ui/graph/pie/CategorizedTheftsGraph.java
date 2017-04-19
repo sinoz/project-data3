@@ -18,6 +18,11 @@ import java.util.List;
  */
 public final class CategorizedTheftsGraph extends PieChart {
 	/**
+	 * The decimal format to present percentages.
+	 */
+	private static final String FORMAT = "#.##";
+
+	/**
 	 * Creates a new {@link CategorizedTheftsGraph}.
 	 */
 	public CategorizedTheftsGraph() {
@@ -25,6 +30,9 @@ public final class CategorizedTheftsGraph extends PieChart {
 		fillData();
 	}
 
+	/**
+	 * Configures this graph.
+	 */
 	private void configureGraph() {
 		setLegendSide(Side.BOTTOM);
 		setTitle("Aantal fietsdiefstallen per categorie");
@@ -37,7 +45,7 @@ public final class CategorizedTheftsGraph extends PieChart {
 	 * Fills data inside of the graph by computing it and transforming it to a suitable presentable format.
 	 */
 	private void fillData() {
-		CategorizedTheftCounts.compute() // initiates a stream of data of categorized thef counts
+		CategorizedTheftCounts.compute() // initiates a stream of data of categorized theft counts
 				.toList() // blocks until all data has been computed to turn it into a list of theft categories
 				.map(this::theftCategoriesToPieChartData) // transform the list to a suitable presentation format (PieChart.Data)
 				.subscribe((ObservableList<Data> data) -> Platform.runLater(() -> setData(data))); // then finally present it
@@ -54,7 +62,7 @@ public final class CategorizedTheftsGraph extends PieChart {
 		double total = theftCategories.stream().mapToInt(TheftCategory::getCount).sum();
 
 		// and here we add data imperatively to the ObservableList for the sake of readability
-		DecimalFormat df = new DecimalFormat("#.##");
+		DecimalFormat df = new DecimalFormat(FORMAT);
 		for (TheftCategory category : theftCategories) {
 			double percentage = ((double) category.getCount() / total) * 100D;
 
