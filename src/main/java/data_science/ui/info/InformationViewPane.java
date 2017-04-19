@@ -17,6 +17,9 @@ public final class InformationViewPane extends GridPane {
         setContent();
     }
 
+    /*
+     * Set the content for the Pane. Every second row is empty for a prettier result.
+     */
     private void setContent() {
         add(new Text("Naam"),0,0);
         add(new Text(""),0,1);
@@ -35,6 +38,9 @@ public final class InformationViewPane extends GridPane {
         add(new Text("Samples"),1,6);
     }
 
+    /*
+     * Set the style for the Pane.
+     */
     private void setStyle() {
         setStyle("-fx-font: normal 15px 'Segoe UI'");
         setPadding(new Insets(10, 10, 10, 10));
