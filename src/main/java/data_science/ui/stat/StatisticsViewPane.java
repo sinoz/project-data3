@@ -1,8 +1,8 @@
-package data_science.ui.graph;
+package data_science.ui.stat;
 
-import data_science.ui.graph.line.TheftsByDateChart;
-import data_science.ui.graph.line.TheftsByTimestampChart;
-import data_science.ui.graph.pie.CategorizedTheftsChart;
+import data_science.ui.stat.line.TheftsByDateChart;
+import data_science.ui.stat.line.TheftsByTimestampChart;
+import data_science.ui.stat.pie.CategorizedTheftsChart;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
@@ -16,7 +16,7 @@ import java.util.Arrays;
  * @author I.A
  * @author Johan Bastinck
  */
-public final class GraphViewPane extends BorderPane {
+public final class StatisticsViewPane extends BorderPane {
 	/**
 	 * TODO
 	 */
@@ -33,9 +33,9 @@ public final class GraphViewPane extends BorderPane {
 	private static final String BY_TIMESTAMP = "Thefts Sorted By Timestamp";
 
 	/**
-	 * Creates a new {@link GraphViewPane}.
+	 * Creates a new {@link StatisticsViewPane}.
 	 */
-	GraphViewPane() {
+	StatisticsViewPane() {
 		TreeItem<String> rootItem = new TreeItem<>("Data", null);
 
 		rootItem.getChildren().addAll(Arrays.asList(

@@ -1,4 +1,4 @@
-package data_science.ui.graph.pie;
+package data_science.ui.stat.pie;
 
 import data_science.database.query.graph.TheftCountsByCategoryQuery;
 import data_science.model.TheftCategory;

@@ -1,4 +1,4 @@
-package data_science.ui.graph.line;
+package data_science.ui.stat.line;
 
 import data_science.database.query.graph.TheftCountsByTimestampQuery;
 import data_science.model.TheftTimestamp;
