@@ -1,7 +1,6 @@
 package data_science.ui;
 
 import javafx.scene.control.Tab;
-import javafx.scene.paint.Paint;
 import javafx.scene.text.Text;
 
 /**
@@ -14,13 +13,7 @@ public abstract class CategorizedTab extends Tab {
 	 */
 	public CategorizedTab(String categoryName) {
 		Text text = new Text(categoryName);
-		//text.setFill(textColor());
-
+		// TODO configure text?
 		setGraphic(text);
 	}
-
-	/**
-	 * Returns the corresponding {@link Paint} to apply to the text.
-	 */
-	protected abstract Paint textColor();
 }

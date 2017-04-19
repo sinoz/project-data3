@@ -2,7 +2,7 @@ package data_science.ui.loc.action;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-import data_science.database.query.BicycleStallsRobbedFrom;
+import data_science.database.query.AllBicycleStallsQuery;
 import data_science.model.BicycleStall;
 import data_science.ui.ApplicationScene;
 import data_science.ui.loc.LocationViewActionBar;
@@ -11,24 +11,23 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 
 /**
- * A {@link CheckBox} for a user to toggle whether to show bicycle thefts
- * that occurred at bicycle stalls.
+ * A {@link CheckBox} for a user to toggle whether to show all bicycle stalls.
  * @author I.A
  * @author Jasper Wijnhoven
  */
-public final class ToggleTheftsFromStallsBox extends CheckBox {
+public final class BicycleStallsCheckBox extends CheckBox {
 	/**
 	 * The action bar this checkbox belongs to.
 	 */
 	private final LocationViewActionBar actionBar;
 
 	/**
-	 * Creates a new {@link ToggleTheftsFromStallsBox}.
+	 * Creates a new {@link BicycleStallsCheckBox}.
 	 */
-	public ToggleTheftsFromStallsBox(LocationViewActionBar actionBar) {
-		super("Show Bicycle Thefts From Stalls");
+	public BicycleStallsCheckBox(LocationViewActionBar locationViewActionBar) {
+		super("Show All Bicycle Stalls");
 
-		this.actionBar = actionBar;
+		this.actionBar = locationViewActionBar;
 
 		//setTextFill(Color.WHITE);
 
@@ -47,7 +46,7 @@ public final class ToggleTheftsFromStallsBox extends CheckBox {
 			applyMarkers(scene);
 
 			actionBar.getSafestBicycleStallsBox().setSelected(false);
-			actionBar.getBicycleStallsBox().setSelected(false);
+			actionBar.getBicycleTheftsFromStallsBox().setSelected(false);
 			actionBar.getLeastSafeBicycleStallsBox().setSelected(false);
 		} else {
 			scene.clearAllMarkers();
@@ -55,7 +54,7 @@ public final class ToggleTheftsFromStallsBox extends CheckBox {
 	}
 
 	private void applyMarkers(ApplicationScene scene) {
-		BicycleStallsRobbedFrom.compute().subscribe((BicycleStall s) -> {
+		AllBicycleStallsQuery.compute().subscribe((BicycleStall s) -> {
 			Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
 				LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 

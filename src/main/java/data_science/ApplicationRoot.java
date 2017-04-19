@@ -15,6 +15,11 @@ import javafx.stage.Stage;
  */
 public final class ApplicationRoot extends Application {
   /**
+   * The title of this application.
+   */
+  private static final String TITLE = "Data Science Project";
+
+  /**
    * The default resolution of this application.
    */
   public static Rectangle2D RESOLUTION;
@@ -72,7 +77,7 @@ public final class ApplicationRoot extends Application {
 
     stage.setResizable(true);
 
-    stage.setTitle("FX");
+    stage.setTitle(TITLE);
     stage.setScene(scene);
 
     stage.show();

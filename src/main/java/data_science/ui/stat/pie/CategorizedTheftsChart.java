@@ -1,6 +1,6 @@
-package data_science.ui.graph.pie;
+package data_science.ui.stat.pie;
 
-import data_science.database.query.graph.CategorizedTheftCounts;
+import data_science.database.query.graph.TheftCountsByCategoryQuery;
 import data_science.model.TheftCategory;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -16,18 +16,26 @@ import java.util.List;
  * for each category.
  * @author I.A
  */
-public final class CategorizedTheftsGraph extends PieChart {
+public final class CategorizedTheftsChart extends PieChart {
 	/**
-	 * Creates a new {@link CategorizedTheftsGraph}.
+	 * The decimal format to present percentages.
 	 */
-	public CategorizedTheftsGraph() {
+	private static final String FORMAT = "#.##";
+
+	/**
+	 * Creates a new {@link CategorizedTheftsChart}.
+	 */
+	public CategorizedTheftsChart() {
 		configureGraph();
 		fillData();
 	}
 
+	/**
+	 * Configures this graph.
+	 */
 	private void configureGraph() {
 		setLegendSide(Side.BOTTOM);
-		setTitle("Aantal fietsdiefstallen per categorie");
+		setTitle("Amount Bicycle Thefts Sorted By Category");
 		setClockwise(true);
 		setLabelsVisible(true);
 		setLabelLineLength(40);
@@ -37,7 +45,7 @@ public final class CategorizedTheftsGraph extends PieChart {
 	 * Fills data inside of the graph by computing it and transforming it to a suitable presentable format.
 	 */
 	private void fillData() {
-		CategorizedTheftCounts.compute() // initiates a stream of data of categorized thef counts
+		TheftCountsByCategoryQuery.compute() // initiates a stream of data of categorized theft counts
 				.toList() // blocks until all data has been computed to turn it into a list of theft categories
 				.map(this::theftCategoriesToPieChartData) // transform the list to a suitable presentation format (PieChart.Data)
 				.subscribe((ObservableList<Data> data) -> Platform.runLater(() -> setData(data))); // then finally present it
@@ -54,7 +62,7 @@ public final class CategorizedTheftsGraph extends PieChart {
 		double total = theftCategories.stream().mapToInt(TheftCategory::getCount).sum();
 
 		// and here we add data imperatively to the ObservableList for the sake of readability
-		DecimalFormat df = new DecimalFormat("#.##");
+		DecimalFormat df = new DecimalFormat(FORMAT);
 		for (TheftCategory category : theftCategories) {
 			double percentage = ((double) category.getCount() / total) * 100D;
 

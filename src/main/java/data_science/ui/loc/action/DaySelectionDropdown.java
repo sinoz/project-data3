@@ -2,7 +2,7 @@ package data_science.ui.loc.action;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-import data_science.database.query.AllBicycleStalls;
+import data_science.database.query.AllBicycleStallsQuery;
 import data_science.model.BicycleStall;
 import data_science.ui.ApplicationScene;
 import data_science.ui.loc.LocationViewComboPane;
@@ -50,7 +50,7 @@ public final class DaySelectionDropdown extends ComboBox {
     }
 
     private void applyMarkers(ApplicationScene scene) {
-        AllBicycleStalls.compute().subscribe((BicycleStall s) -> {
+        AllBicycleStallsQuery.compute().subscribe((BicycleStall s) -> {
             Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
                 LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 

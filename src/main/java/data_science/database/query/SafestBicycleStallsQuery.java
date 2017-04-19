@@ -13,7 +13,7 @@ import java.sql.ResultSet;
  * as the safest.
  * @author I.A
  */
-public final class SafestBicycleStalls {
+public final class SafestBicycleStallsQuery {
 	/**
 	 * The query to write.
 	 */

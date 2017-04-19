@@ -12,7 +12,7 @@ import java.sql.ResultSet;
  * A query to compute a categorized count of bicycle thefts.
  * @author I.A
  */
-public final class CategorizedTheftCounts {
+public final class TheftCountsByCategoryQuery {
 	/**
 	 * The query to execute.
 	 */
