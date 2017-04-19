@@ -3,9 +3,7 @@ package data_science.ui.loc;
 import data_science.ui.loc.action.*;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 
 /**
  * A {@link GridPane} that acts as an action bar on the side left to the google maps.

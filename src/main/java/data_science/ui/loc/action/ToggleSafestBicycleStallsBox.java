@@ -46,6 +46,7 @@ public final class ToggleSafestBicycleStallsBox extends CheckBox {
 
 			actionBar.getBicycleStallsBox().setSelected(false);
 			actionBar.getBicycleTheftsFromStallsBox().setSelected(false);
+			actionBar.getLeastSafeBicycleStallsBox().setSelected(false);
 		} else {
 			scene.clearAllMarkers();
 		}
