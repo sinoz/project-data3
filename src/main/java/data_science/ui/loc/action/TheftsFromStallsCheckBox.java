@@ -2,7 +2,7 @@ package data_science.ui.loc.action;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-import data_science.database.query.SafestBicycleStalls;
+import data_science.database.query.BicycleStallsRobbedFromQuery;
 import data_science.model.BicycleStall;
 import data_science.ui.ApplicationScene;
 import data_science.ui.loc.LocationViewActionBar;
@@ -11,23 +11,24 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 
 /**
- * A {@link CheckBox} for a user to toggle whether to show the safest bicycle stalls.
+ * A {@link CheckBox} for a user to toggle whether to show bicycle thefts
+ * that occurred at bicycle stalls.
  * @author I.A
  * @author Jasper Wijnhoven
  */
-public final class ToggleSafestBicycleStallsBox extends CheckBox {
+public final class TheftsFromStallsCheckBox extends CheckBox {
 	/**
 	 * The action bar this checkbox belongs to.
 	 */
 	private final LocationViewActionBar actionBar;
 
 	/**
-	 * Creates a new {@link ToggleSafestBicycleStallsBox}.
+	 * Creates a new {@link TheftsFromStallsCheckBox}.
 	 */
-	public ToggleSafestBicycleStallsBox(LocationViewActionBar locationViewActionBar) {
-		super("Show Top 5 Safest Bicycle Stalls");
+	public TheftsFromStallsCheckBox(LocationViewActionBar actionBar) {
+		super("Show Bicycle Thefts From Stalls");
 
-		this.actionBar = locationViewActionBar;
+		this.actionBar = actionBar;
 
 		//setTextFill(Color.WHITE);
 
@@ -45,8 +46,8 @@ public final class ToggleSafestBicycleStallsBox extends CheckBox {
 		if (enabled) {
 			applyMarkers(scene);
 
+			actionBar.getSafestBicycleStallsBox().setSelected(false);
 			actionBar.getBicycleStallsBox().setSelected(false);
-			actionBar.getBicycleTheftsFromStallsBox().setSelected(false);
 			actionBar.getLeastSafeBicycleStallsBox().setSelected(false);
 		} else {
 			scene.clearAllMarkers();
@@ -54,7 +55,7 @@ public final class ToggleSafestBicycleStallsBox extends CheckBox {
 	}
 
 	private void applyMarkers(ApplicationScene scene) {
-		SafestBicycleStalls.compute().take(5).subscribe((BicycleStall s) -> {
+		BicycleStallsRobbedFromQuery.compute().subscribe((BicycleStall s) -> {
 			Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
 				LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 

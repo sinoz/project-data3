@@ -1,8 +1,8 @@
 package data_science.ui.graph;
 
-import data_science.ui.graph.line.TheftsByDateGraph;
-import data_science.ui.graph.line.TheftsByTimestampGraph;
-import data_science.ui.graph.pie.CategorizedTheftsGraph;
+import data_science.ui.graph.line.TheftsByDateChart;
+import data_science.ui.graph.line.TheftsByTimestampChart;
+import data_science.ui.graph.pie.CategorizedTheftsChart;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.BorderPane;
@@ -68,23 +68,23 @@ public final class GraphViewPane extends BorderPane {
 	}
 
 	/**
-	 * Presents the {@link CategorizedTheftsGraph}.
+	 * Presents the {@link CategorizedTheftsChart}.
 	 */
 	private void presentCategorizedTheftsGraph() {
-		setCenter(new VBox(new CategorizedTheftsGraph()));
+		setCenter(new VBox(new CategorizedTheftsChart()));
 	}
 
 	/**
-	 * Presents the {@link TheftsByDateGraph}.
+	 * Presents the {@link TheftsByDateChart}.
 	 */
 	private void presentTheftsByDate() {
-		setCenter(new VBox(TheftsByDateGraph.create()));
+		setCenter(new VBox(TheftsByDateChart.create()));
 	}
 
 	/**
-	 * Presents the {@link TheftsByTimestampGraph}.
+	 * Presents the {@link TheftsByTimestampChart}.
 	 */
 	private void presentTheftsByTimestamp() {
-		setCenter(new VBox(TheftsByTimestampGraph.create()));
+		setCenter(new VBox(TheftsByTimestampChart.create()));
 	}
 }

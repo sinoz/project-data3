@@ -1,7 +1,6 @@
 package data_science.ui.graph.line;
 
 import data_science.database.query.graph.TheftCountsByDateQuery;
-import data_science.database.query.graph.TheftCountsByTimestampQuery;
 import data_science.model.TheftTimestamp;
 import javafx.application.Platform;
 import javafx.geometry.Side;
@@ -18,29 +17,29 @@ import java.util.List;
  * @author I.A
  * @author Jasper Wijnhoven
  */
-public final class TheftsByDateGraph extends LineChart<String, Number> {
+public final class TheftsByDateChart extends LineChart<String, Number> {
 	/**
 	 * The amount of timestamps to take and present in the graph from our stream of timestamps.
 	 */
 	private static final int COMPUTE_LIMIT = 25;
 
 	/**
-	 * A factory method to produce a new {@link TheftsByDateGraph} chart.
+	 * A factory method to produce a new {@link TheftsByDateChart} chart.
 	 */
-	public static TheftsByDateGraph create() {
+	public static TheftsByDateChart create() {
 		Axis<String> xAxis = new CategoryAxis();
 		NumberAxis yAxis = new NumberAxis();
 
 		xAxis.setLabel("Date");
 		yAxis.setLabel("Count");
 
-		return new TheftsByDateGraph(xAxis, yAxis);
+		return new TheftsByDateChart(xAxis, yAxis);
 	}
 
 	/**
-	 * Creates a new {@link TheftsByDateGraph}.
+	 * Creates a new {@link TheftsByDateChart}.
 	 */
-	private TheftsByDateGraph(Axis<String> xAxis, NumberAxis yAxis) {
+	private TheftsByDateChart(Axis<String> xAxis, NumberAxis yAxis) {
 		super(xAxis, yAxis);
 
 		configureGraph();

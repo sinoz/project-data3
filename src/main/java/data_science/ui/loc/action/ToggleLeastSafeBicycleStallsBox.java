@@ -2,7 +2,7 @@ package data_science.ui.loc.action;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-import data_science.database.query.LeastSafeBicycleStalls;
+import data_science.database.query.LeastSafeBicycleStallsQuery;
 import data_science.model.BicycleStall;
 import data_science.ui.ApplicationScene;
 import data_science.ui.loc.LocationViewActionBar;
@@ -22,7 +22,7 @@ public final class ToggleLeastSafeBicycleStallsBox extends CheckBox {
     private final LocationViewActionBar actionBar;
 
     /**
-     * Creates a new {@link ToggleSafestBicycleStallsBox}.
+     * Creates a new {@link SafestBicycleStallsCheckBox}.
      */
     public ToggleLeastSafeBicycleStallsBox(LocationViewActionBar locationViewActionBar) {
         super("Show Top 5 Least Safe Bicycle Stalls");
@@ -54,7 +54,7 @@ public final class ToggleLeastSafeBicycleStallsBox extends CheckBox {
     }
 
     private void applyMarkers(ApplicationScene scene) {
-        LeastSafeBicycleStalls.compute().take(5).subscribe((BicycleStall s) -> {
+        LeastSafeBicycleStallsQuery.compute().take(5).subscribe((BicycleStall s) -> {
             Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
                 LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 

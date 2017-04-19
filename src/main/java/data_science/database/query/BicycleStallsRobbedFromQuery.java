@@ -9,15 +9,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * A query to compute a collection of {@link BicycleStall}s.
+ * A query to compute a collection of {@link BicycleStall}s where bicycle thefts have occurred.
  * @author I.A
  */
-public final class AllBicycleStalls {
+public final class BicycleStallsRobbedFromQuery {
 	/**
 	 * The query to write.
 	 */
 	// TODO read from sql file
-	private static final String QUERY = "SELECT bs.street, bs.latitude, bs.longitude FROM bicycle_stalls AS bs;";
+	private static final String QUERY = "SELECT bs.street, bs.latitude, bs.longitude\n" +
+			"FROM bicycle_thefts AS bt\n" +
+			"INNER JOIN bicycle_stalls AS bs\n" +
+			"ON bs.street = bt.straat AND bs.latitude <> 0.0 AND bs.longitude <> 0.0\n" +
+			"GROUP BY bs.street, bs.latitude, bs.longitude";
 
 	/**
 	 * Returns an {@link Observable} that computes the collection of bicycle stalls.

@@ -2,7 +2,7 @@ package data_science.ui.loc.action;
 
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
-import data_science.database.query.AllBicycleStalls;
+import data_science.database.query.SafestBicycleStallsQuery;
 import data_science.model.BicycleStall;
 import data_science.ui.ApplicationScene;
 import data_science.ui.loc.LocationViewActionBar;
@@ -11,21 +11,21 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
 
 /**
- * A {@link CheckBox} for a user to toggle whether to show all bicycle stalls.
+ * A {@link CheckBox} for a user to toggle whether to show the safest bicycle stalls.
  * @author I.A
  * @author Jasper Wijnhoven
  */
-public final class ToggleBicycleStallsBox extends CheckBox {
+public final class SafestBicycleStallsCheckBox extends CheckBox {
 	/**
 	 * The action bar this checkbox belongs to.
 	 */
 	private final LocationViewActionBar actionBar;
 
 	/**
-	 * Creates a new {@link ToggleBicycleStallsBox}.
+	 * Creates a new {@link SafestBicycleStallsCheckBox}.
 	 */
-	public ToggleBicycleStallsBox(LocationViewActionBar locationViewActionBar) {
-		super("Show All Bicycle Stalls");
+	public SafestBicycleStallsCheckBox(LocationViewActionBar locationViewActionBar) {
+		super("Show Top 5 Safest Bicycle Stalls");
 
 		this.actionBar = locationViewActionBar;
 
@@ -45,7 +45,7 @@ public final class ToggleBicycleStallsBox extends CheckBox {
 		if (enabled) {
 			applyMarkers(scene);
 
-			actionBar.getSafestBicycleStallsBox().setSelected(false);
+			actionBar.getBicycleStallsBox().setSelected(false);
 			actionBar.getBicycleTheftsFromStallsBox().setSelected(false);
 			actionBar.getLeastSafeBicycleStallsBox().setSelected(false);
 		} else {
@@ -54,7 +54,7 @@ public final class ToggleBicycleStallsBox extends CheckBox {
 	}
 
 	private void applyMarkers(ApplicationScene scene) {
-		AllBicycleStalls.compute().subscribe((BicycleStall s) -> {
+		SafestBicycleStallsQuery.compute().take(5).subscribe((BicycleStall s) -> {
 			Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
 				LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 

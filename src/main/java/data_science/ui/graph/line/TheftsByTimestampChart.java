@@ -14,29 +14,29 @@ import java.util.List;
  * @author I.A
  * @author Jasper Wijnhoven
  */
-public final class TheftsByTimestampGraph extends LineChart<String, Number> {
+public final class TheftsByTimestampChart extends LineChart<String, Number> {
 	/**
 	 * The amount of timestamps to take and present in the graph from our stream of timestamps.
 	 */
 	private static final int COMPUTE_LIMIT = 25;
 
 	/**
-	 * A factory method to produce a new {@link TheftsByTimestampGraph} chart.
+	 * A factory method to produce a new {@link TheftsByTimestampChart} chart.
 	 */
-	public static TheftsByTimestampGraph create() {
+	public static TheftsByTimestampChart create() {
 		Axis<String> xAxis = new CategoryAxis();
 		NumberAxis yAxis = new NumberAxis();
 
 		xAxis.setLabel("Timestamp");
 		yAxis.setLabel("Count");
 
-		return new TheftsByTimestampGraph(xAxis, yAxis);
+		return new TheftsByTimestampChart(xAxis, yAxis);
 	}
 
 	/**
-	 * Creates a new {@link TheftsByDateGraph}.
+	 * Creates a new {@link TheftsByDateChart}.
 	 */
-	private TheftsByTimestampGraph(Axis<String> xAxis, NumberAxis yAxis) {
+	private TheftsByTimestampChart(Axis<String> xAxis, NumberAxis yAxis) {
 		super(xAxis, yAxis);
 
 		configureGraph();
@@ -58,7 +58,7 @@ public final class TheftsByTimestampGraph extends LineChart<String, Number> {
 		TheftCountsByTimestampQuery.compute()
 				.take(COMPUTE_LIMIT) // limit our results
 				.toList() // blocks until all data has been computed to turn it into a list of theft timestamps
-				.map(this::theftTimestamps2ChartSeries) // transform the list to a suitable presentation format (PieChart.Data)
+				.map(this::theftTimestamps2ChartSeries) // transform the list to a suitable presentation format (XYChart.Series)
 				.subscribe((XYChart.Series<String, Number> data) -> Platform.runLater(() -> getData().add(data)));
 	}
 

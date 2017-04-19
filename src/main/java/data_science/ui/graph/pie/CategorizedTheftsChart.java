@@ -16,16 +16,16 @@ import java.util.List;
  * for each category.
  * @author I.A
  */
-public final class CategorizedTheftsGraph extends PieChart {
+public final class CategorizedTheftsChart extends PieChart {
 	/**
 	 * The decimal format to present percentages.
 	 */
 	private static final String FORMAT = "#.##";
 
 	/**
-	 * Creates a new {@link CategorizedTheftsGraph}.
+	 * Creates a new {@link CategorizedTheftsChart}.
 	 */
-	public CategorizedTheftsGraph() {
+	public CategorizedTheftsChart() {
 		configureGraph();
 		fillData();
 	}

@@ -16,17 +16,17 @@ public final class LocationViewActionBar extends GridPane {
 	/**
 	 * A checkbox to toggle whether to showcase all bicycle stalls.
 	 */
-	private final CheckBox bicycleStalls = new ToggleBicycleStallsBox(this);
+	private final CheckBox bicycleStalls = new BicycleStallsCheckBox(this);
 
 	/**
 	 * A checkbox to toggle whether to showcase bike thefts that occurred at bicycle stalls.
 	 */
-	private final CheckBox bicycleTheftsFromStalls = new ToggleTheftsFromStallsBox(this);
+	private final CheckBox bicycleTheftsFromStalls = new TheftsFromStallsCheckBox(this);
 
 	/**
 	 * A checkbox to toggle whether to showcase the top 3 safest bicycle stalls.
 	 */
-	private final CheckBox top5SafestBicycleStalls = new ToggleSafestBicycleStallsBox(this);
+	private final CheckBox top5SafestBicycleStalls = new SafestBicycleStallsCheckBox(this);
 
 	/**
 	 * A checkbox to toggle whether to showcase the top 5 least safe bicycle stalls.
