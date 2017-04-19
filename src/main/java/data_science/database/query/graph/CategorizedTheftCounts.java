@@ -1,4 +1,4 @@
-package data_science.database.query;
+package data_science.database.query.graph;
 
 import data_science.database.HikariDbService;
 import data_science.model.TheftCategory;
