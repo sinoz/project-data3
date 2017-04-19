@@ -4,6 +4,7 @@ import com.lynden.gmapsfx.GoogleMapView;
 import com.lynden.gmapsfx.javascript.object.GoogleMap;
 import com.lynden.gmapsfx.javascript.object.Marker;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import data_science.ui.loc.LocationViewActionBar;
 import data_science.ui.loc.LocationViewListener;
 import javafx.scene.Scene;
 
@@ -21,6 +22,11 @@ public final class ApplicationScene extends Scene {
   private final AtomicBoolean viewIsInitialized = new AtomicBoolean();
 
   /**
+   * TODO
+   */
+  private final LocationViewListener listener;
+
+  /**
    * The {@link GoogleMapView} to present inside of a tab.
    */
   private final GoogleMapView view;
@@ -32,6 +38,7 @@ public final class ApplicationScene extends Scene {
     super(new ApplicationPane(view));
 
     this.view = view;
+    this.listener = new LocationViewListener(view, viewIsInitialized);
 
     initMapView();
   }
@@ -41,7 +48,7 @@ public final class ApplicationScene extends Scene {
    * to respond events to.
    */
   private void initMapView() {
-    view.addMapInializedListener(new LocationViewListener(view, viewIsInitialized));
+    view.addMapInializedListener(listener);
   }
 
   /**
@@ -63,5 +70,12 @@ public final class ApplicationScene extends Scene {
    */
   public boolean mapViewIsInitialized() {
     return viewIsInitialized.get();
+  }
+
+  /**
+   * Returns the location view listener.
+   */
+  public LocationViewListener getListener() {
+    return listener;
   }
 }

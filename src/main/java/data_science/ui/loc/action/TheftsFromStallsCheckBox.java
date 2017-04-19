@@ -46,6 +46,8 @@ public final class TheftsFromStallsCheckBox extends CheckBox {
 		if (enabled) {
 			applyMarkers(scene);
 
+			scene.getListener().refresh();
+
 			actionBar.getSafestBicycleStallsBox().setSelected(false);
 			actionBar.getBicycleStallsBox().setSelected(false);
 			actionBar.getLeastSafeBicycleStallsBox().setSelected(false);

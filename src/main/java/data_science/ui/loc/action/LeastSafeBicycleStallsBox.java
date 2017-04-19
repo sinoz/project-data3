@@ -15,7 +15,7 @@ import javafx.scene.control.CheckBox;
  * @author I.A
  * @author Jasper Wijnhoven
  */
-public final class ToggleLeastSafeBicycleStallsBox extends CheckBox {
+public final class LeastSafeBicycleStallsBox extends CheckBox {
     /**
      * The action bar this checkbox belongs to.
      */
@@ -24,12 +24,10 @@ public final class ToggleLeastSafeBicycleStallsBox extends CheckBox {
     /**
      * Creates a new {@link SafestBicycleStallsCheckBox}.
      */
-    public ToggleLeastSafeBicycleStallsBox(LocationViewActionBar locationViewActionBar) {
+    public LeastSafeBicycleStallsBox(LocationViewActionBar locationViewActionBar) {
         super("Show Top 5 Least Safe Bicycle Stalls");
 
         this.actionBar = locationViewActionBar;
-
-        //setTextFill(Color.WHITE);
 
         selectedProperty().addListener(this::stateChange);
         setIndeterminate(false);
@@ -44,6 +42,8 @@ public final class ToggleLeastSafeBicycleStallsBox extends CheckBox {
         boolean enabled = newValue;
         if (enabled) {
             applyMarkers(scene);
+
+            scene.getListener().refresh();
 
             actionBar.getBicycleStallsBox().setSelected(false);
             actionBar.getBicycleTheftsFromStallsBox().setSelected(false);

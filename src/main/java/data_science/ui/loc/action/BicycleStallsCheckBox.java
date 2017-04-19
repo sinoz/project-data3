@@ -29,8 +29,6 @@ public final class BicycleStallsCheckBox extends CheckBox {
 
 		this.actionBar = locationViewActionBar;
 
-		//setTextFill(Color.WHITE);
-
 		selectedProperty().addListener(this::stateChange);
 		setIndeterminate(false);
 	}
@@ -44,6 +42,8 @@ public final class BicycleStallsCheckBox extends CheckBox {
 		boolean enabled = newValue;
 		if (enabled) {
 			applyMarkers(scene);
+
+			scene.getListener().refresh();
 
 			actionBar.getSafestBicycleStallsBox().setSelected(false);
 			actionBar.getBicycleTheftsFromStallsBox().setSelected(false);

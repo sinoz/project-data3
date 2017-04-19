@@ -32,7 +32,7 @@ public final class LocationViewActionBar extends GridPane {
   /**
    * A checkbox to toggle whether to showcase the top 5 least safe bicycle stalls.
    */
-  private final CheckBox top5LeastSafeBicycleStalls = new ToggleLeastSafeBicycleStallsBox(this);
+  private final CheckBox top5LeastSafeBicycleStalls = new LeastSafeBicycleStallsBox(this);
 
   /**
    * Creates a new {@link LocationViewActionBar}.

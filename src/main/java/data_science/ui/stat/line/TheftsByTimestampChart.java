@@ -48,6 +48,7 @@ public final class TheftsByTimestampChart extends LineChart<String, Number> {
 	 */
 	private void configureGraph() {
 		setLegendSide(Side.BOTTOM);
+		setAnimated(false);
 		setTitle("Amount (AVG) bicycle thefts sorted by timestamp");
 	}
 
