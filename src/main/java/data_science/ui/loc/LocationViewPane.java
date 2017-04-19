@@ -30,7 +30,6 @@ public final class LocationViewPane extends BorderPane {
 
 		setLeft(actionBar);
 		setRight(mapView);
-		Line centerLine = new Line(((ApplicationRoot.RESOLUTION.getWidth() * 0.75F)/2)-1, 0.00, ((ApplicationRoot.RESOLUTION.getWidth() * 0.75F)/2)+1, (ApplicationRoot.RESOLUTION.getHeight()));
 		sizeUpMap();
 
 	}
