@@ -14,6 +14,7 @@ import javafx.scene.control.CheckBox;
  * A {@link CheckBox} for a user to toggle whether to show bicycle thefts
  * that occurred at bicycle stalls.
  * @author I.A
+ * @author Jasper Wijnhoven
  */
 public final class ToggleTheftsFromStallsBox extends CheckBox {
 	/**

@@ -13,6 +13,7 @@ import javafx.scene.control.CheckBox;
 /**
  * A {@link CheckBox} for a user to toggle whether to show the safest bicycle stalls.
  * @author I.A
+ * @author Jasper Wijnhoven
  */
 public final class ToggleLeastSafeBicycleStallsBox extends CheckBox {
     /**

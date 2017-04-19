@@ -13,6 +13,7 @@ import javafx.scene.control.CheckBox;
 /**
  * A {@link CheckBox} for a user to toggle whether to show all bicycle stalls.
  * @author I.A
+ * @author Jasper Wijnhoven
  */
 public final class ToggleBicycleStallsBox extends CheckBox {
 	/**

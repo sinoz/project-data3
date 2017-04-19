@@ -4,6 +4,7 @@ import com.lynden.gmapsfx.GoogleMapView;
 import data_science.ApplicationRoot;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.shape.Line;
 
 /**
  * A {@link BorderPane} to position the {@link LocationViewActionBar} onto the
@@ -29,6 +30,7 @@ public final class LocationViewPane extends BorderPane {
 
 		setLeft(actionBar);
 		setRight(mapView);
+		Line centerLine = new Line(((ApplicationRoot.RESOLUTION.getWidth() * 0.75F)/2)-1, 0.00, ((ApplicationRoot.RESOLUTION.getWidth() * 0.75F)/2)+1, (ApplicationRoot.RESOLUTION.getHeight()));
 		sizeUpMap();
 
 	}

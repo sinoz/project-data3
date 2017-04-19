@@ -44,7 +44,7 @@ public final class LocationViewActionBar extends GridPane {
 	}
 
 	private void applyStyling() {
-		setStyle("-fx-font: normal bold 16px 'Segoe UI' ");
+		setStyle("-fx-font: normal bold 15px 'Segoe UI'");
 	}
 
 	private void addSubordinates() {
