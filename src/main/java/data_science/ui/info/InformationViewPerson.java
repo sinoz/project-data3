@@ -19,28 +19,4 @@ public class InformationViewPerson {
     this.lName = new SimpleStringProperty(lName);
     this.done = new SimpleStringProperty(done);
   }
-
-  public String getFName() {
-    return fName.get();
-  }
-
-  public void setFName(String fName) {
-    this.fName = new SimpleStringProperty(fName);
-  }
-
-  public String getLtName() {
-    return lName.get();
-  }
-
-  public void setLName(String lName) {
-    this.lName = new SimpleStringProperty(lName);
-  }
-
-  public String getDone() {
-    return done.get();
-  }
-
-  public void setDone(String done) {
-    this.done = new SimpleStringProperty(done);
-  }
 }
