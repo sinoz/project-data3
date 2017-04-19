@@ -35,7 +35,8 @@ public final class InformationViewPane extends BorderPane {
   }
 
   /*
-   * Specify infoTable specs and create columns
+   * Specify infoTable specs, create and fill columns
+   * TODO Clean up code
    */
   private void setTable() {
     infoTable.setEditable(true);
@@ -74,30 +75,6 @@ public final class InformationViewPane extends BorderPane {
     infoTable.getColumns().add(doneCol);
     setCenter(infoTable);
   }
-//  private void setTable() {
-//    infoTable.setEditable(true);
-//    infoTable.setMaxWidth(1802);
-//
-//    TableColumn fNameCol = new TableColumn("Voornaam");
-//    fNameCol.setCellValueFactory(
-//        new PropertyValueFactory<InformationViewPerson, String>("Voornaam"));
-//    fNameCol.setMinWidth(300);
-//
-//    TableColumn lNameCol = new TableColumn("Achternaam");
-//    lNameCol.setCellValueFactory(
-//        new PropertyValueFactory<InformationViewPerson, String>("Achternaam"));
-//    lNameCol.setMinWidth(300);
-//
-//    TableColumn doneCol = new TableColumn("Gedaan");
-//    doneCol.setCellValueFactory(
-//        new PropertyValueFactory<InformationViewPerson, String>("Gedaan"));
-//    doneCol.setMinWidth(1200);
-//
-//    infoTable.setItems(personData);
-//    infoTable.getItems().add(personData);
-//    infoTable.getColumns().addAll(fNameCol, lNameCol, doneCol);
-//    setCenter(infoTable);
-//  }
 
   /*
    * Set the style for the Pane.
