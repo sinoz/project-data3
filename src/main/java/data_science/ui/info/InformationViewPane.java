@@ -1,50 +1,67 @@
 package data_science.ui.info;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
-import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.VBox;
 
 /**
  * @author Jasper Wijnhoven
  */
-public final class InformationViewPane extends GridPane {
+public final class InformationViewPane extends VBox {
 
-    /**
-     * Creates a new {@link InformationViewPane}.
-     */
-    InformationViewPane() {
-        setStyle();
-        setContent();
-    }
+  private TableView infoTable = new TableView();
+  /**
+   * Creates a new {@link InformationViewPane}.
+   */
+  InformationViewPane() {
+    setTable();
+    setStyle();
+    setContent();
+  }
 
-    /*
-     * Set the content for the Pane. Every second row is empty for a prettier result.
-     */
-    private void setContent() {
-        add(new Text("Naam"),0,0);
-        add(new Text(""),0,1);
-        add(new Text("Ilyas Baas"),0,2);
-        add(new Text("Jasper Wijnhoven"),0,3);
-        add(new Text("Xin Hao Xia"),0,4);
-        add(new Text("Dino Becker"),0,5);
-        add(new Text("Johan Bastinck"),0,6);
+  /*
+   * Set the content for the Pane. Every second row is empty for a prettier result.
+   */
+  private void setTable() {
+    infoTable.setEditable(true);
 
-        add(new Text("Gedaan"),1,0);
-        add(new Text(""),1,1);
-        add(new Text("TODO"),1,2);
-        add(new Text("Checkboxes, Comboboxes, Linechart, Tabs"),1,3);
-        add(new Text("Samples"),1,4);
-        add(new Text("CSS"),1,5);
-        add(new Text("Samples"),1,6);
-    }
+    TableColumn fNameCol = new TableColumn("Voornaam");
+    fNameCol.setMinWidth(200);
 
-    /*
-     * Set the style for the Pane.
-     */
-    private void setStyle() {
-        setStyle("-fx-font: normal 15px 'Segoe UI'");
-        setPadding(new Insets(10, 10, 10, 10));
-        setVgap(7);
-        setHgap(20);
-    }
+
+    TableColumn lNameCol = new TableColumn("Achternaam");
+    lNameCol.setMinWidth(200);
+
+    TableColumn doneCol= new TableColumn("Gedaan");
+    doneCol.setMinWidth(800);
+
+    infoTable.getColumns().addAll(fNameCol,lNameCol,doneCol);
+
+    getChildren().add(infoTable);
+  }
+
+  /*
+   * Create content for InformationViewPane
+   */
+  private void setContent() {
+    ObservableList<InformationViewPerson> personData =
+        FXCollections.observableArrayList(
+      new InformationViewPerson("Ilyas", "Baas", "TODO"),
+      new InformationViewPerson("Jasper", "Wijnhoven", "Checkboxes, Comboboxes, Linechart, Tabs"),
+      new InformationViewPerson("Xin Hao", "Xia", "Samples"),
+      new InformationViewPerson("Dino", "Becker", "CSS"),
+      new InformationViewPerson("Johan", "Bastinck", "Samples"));
+    infoTable.setItems(personData);
+  }
+
+  /*
+   * Set the style for the Pane.
+   */
+  private void setStyle() {
+    setStyle("-fx-font: normal 15px 'Segoe UI'");
+    setPadding(new Insets(10, 10, 10, 10));
+  }
 }

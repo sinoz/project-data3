@@ -22,8 +22,4 @@ public final class InformationViewTab extends CategorizedTab {
         this.pane = new InformationViewPane();
         setContent(this.pane);
     }
-
-    protected Paint textColor() {
-        return Color.WHITE;
-    }
 }
