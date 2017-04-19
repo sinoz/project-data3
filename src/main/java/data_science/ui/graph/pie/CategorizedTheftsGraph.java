@@ -1,6 +1,6 @@
 package data_science.ui.graph.pie;
 
-import data_science.database.query.graph.CategorizedTheftCounts;
+import data_science.database.query.graph.TheftCountsByCategoryQuery;
 import data_science.model.TheftCategory;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -45,7 +45,7 @@ public final class CategorizedTheftsGraph extends PieChart {
 	 * Fills data inside of the graph by computing it and transforming it to a suitable presentable format.
 	 */
 	private void fillData() {
-		CategorizedTheftCounts.compute() // initiates a stream of data of categorized theft counts
+		TheftCountsByCategoryQuery.compute() // initiates a stream of data of categorized theft counts
 				.toList() // blocks until all data has been computed to turn it into a list of theft categories
 				.map(this::theftCategoriesToPieChartData) // transform the list to a suitable presentation format (PieChart.Data)
 				.subscribe((ObservableList<Data> data) -> Platform.runLater(() -> setData(data))); // then finally present it
