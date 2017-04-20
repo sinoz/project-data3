@@ -17,7 +17,7 @@ public final class AllBicycleStallsQuery {
 	 * The query to write.
 	 */
 	// TODO read from sql file
-	private static final String QUERY = "SELECT bs.street, bs.latitude, bs.longitude FROM bicycle_stalls AS bs;";
+	private static final String QUERY = "SELECT bs.street, bs.area, bs.latitude, bs.longitude FROM bicycle_stalls AS bs;";
 
 	/**
 	 * Returns an {@link Observable} that computes the collection of bicycle stalls.
@@ -29,11 +29,12 @@ public final class AllBicycleStallsQuery {
 					ResultSet resultSet = statement.executeQuery();
 					while (resultSet.next()) {
 						String streetName = resultSet.getString("street");
+						String area = resultSet.getString("area");
 
 						float latitude = resultSet.getFloat("latitude");
 						float longitude = resultSet.getFloat("longitude");
 
-						emitter.onNext(new BicycleStall(streetName, latitude, longitude));
+						emitter.onNext(new BicycleStall(streetName, area, latitude, longitude));
 					}
 				}
 			} catch (Exception e) {

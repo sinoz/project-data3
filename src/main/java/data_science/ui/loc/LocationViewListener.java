@@ -65,6 +65,13 @@ public final class LocationViewListener implements MapComponentInitializedListen
   }
 
   /**
+   * Performs a visual refresh by updating the zoom. Quickfix to rendering glitches.
+   */
+  public void refresh() {
+    // TODO
+  }
+
+  /**
    * Returns the state of the {@link GoogleMap}.
    */
   public GoogleMap getMap() {

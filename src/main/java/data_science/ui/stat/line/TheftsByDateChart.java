@@ -51,6 +51,7 @@ public final class TheftsByDateChart extends LineChart<String, Number> {
    */
   private void configureGraph() {
     setLegendSide(Side.BOTTOM);
+    setAnimated(false);
     setTitle("Amount (AVG) bicycle thefts sorted by date");
   }
 

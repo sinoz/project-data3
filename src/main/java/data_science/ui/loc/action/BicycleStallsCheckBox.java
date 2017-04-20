@@ -1,5 +1,6 @@
 package data_science.ui.loc.action;
 
+import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import data_science.database.query.AllBicycleStallsQuery;
@@ -29,8 +30,6 @@ public final class BicycleStallsCheckBox extends CheckBox {
 
 		this.actionBar = locationViewActionBar;
 
-		//setTextFill(Color.WHITE);
-
 		selectedProperty().addListener(this::stateChange);
 		setIndeterminate(false);
 	}
@@ -45,6 +44,8 @@ public final class BicycleStallsCheckBox extends CheckBox {
 		if (enabled) {
 			applyMarkers(scene);
 
+			scene.getListener().refresh();
+
 			actionBar.getSafestBicycleStallsBox().setSelected(false);
 			actionBar.getBicycleTheftsFromStallsBox().setSelected(false);
 			actionBar.getLeastSafeBicycleStallsBox().setSelected(false);
@@ -58,7 +59,11 @@ public final class BicycleStallsCheckBox extends CheckBox {
 			Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
 				LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 
-				scene.presentMarker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE));
+				InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+				infoWindowOptions.content("<h2>" + s.getArea() + "</h2>"
+						+ "Street Name: " + s.getName() + "<br>" );
+
+				scene.presentMarker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE), infoWindowOptions);
 			});
 		});
 
