@@ -28,13 +28,13 @@ public class JavafxSample extends Application {
 
 		// Combobox wordt aangemaakt met alle opties die je kan selecteren
 		ComboBox locationchoiceBox = new ComboBox(
-				FXCollections.observableArrayList("lekker boeiend", "Oud-IJsselmonde", "Groot-IJsselmonde"));
+				FXCollections.observableArrayList("Test", "Oud-IJsselmonde", "Groot-IJsselmonde"));
 		CheckBox cb = new CheckBox("show/hide bike thefts");
 		cb.setIndeterminate(false);
 		// locationchoiceBox.getItems().addAll("Hyderabad", "Chennai", "Delhi",
 		// "Mumbai", "Vishakhapatnam");
 		ComboBox locationchoiceBox1 = new ComboBox(
-				FXCollections.observableArrayList("lekker boeiend", "Oud-IJsselmonde", "Groot-IJsselmonde"));
+				FXCollections.observableArrayList("Eerste optie", "Oud-IJsselmonde", "Groot-IJsselmonde"));
 		
 		// Grid Pane creëeren voor de positie van alle elementen
 		GridPane gridPane = new GridPane();
