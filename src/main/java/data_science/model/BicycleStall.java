@@ -11,6 +11,11 @@ public final class BicycleStall {
 	private final String name;
 
 	/**
+	 * The name of the area of the stall.
+	 */
+	private final String area;
+
+	/**
 	 * The coordinates of the stall on the map.
 	 */
 	private final float latitude, longitude;
@@ -18,14 +23,19 @@ public final class BicycleStall {
 	/**
 	 * Creates a new {@link BicycleStall}.
 	 */
-	public BicycleStall(String name, float latitude, float longitude) {
+	public BicycleStall(String name, String area, float latitude, float longitude) {
 		this.name = name;
+		this.area = area;
 		this.latitude = latitude;
 		this.longitude = longitude;
 	}
 
 	public String getName() {
 		return name;
+	}
+
+	public String getArea() {
+		return area;
 	}
 
 	public float getLatitude() {

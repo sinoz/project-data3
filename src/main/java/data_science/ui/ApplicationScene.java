@@ -1,12 +1,13 @@
 package data_science.ui;
 
 import com.lynden.gmapsfx.GoogleMapView;
-import com.lynden.gmapsfx.javascript.object.GoogleMap;
-import com.lynden.gmapsfx.javascript.object.Marker;
-import com.lynden.gmapsfx.javascript.object.MarkerOptions;
+import com.lynden.gmapsfx.javascript.event.UIEventHandler;
+import com.lynden.gmapsfx.javascript.event.UIEventType;
+import com.lynden.gmapsfx.javascript.object.*;
 import data_science.ui.loc.LocationViewActionBar;
 import data_science.ui.loc.LocationViewListener;
 import javafx.scene.Scene;
+import netscape.javascript.JSObject;
 
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -59,10 +60,26 @@ public final class ApplicationScene extends Scene {
   }
 
   /**
-   * Adds a new {@link Marker} using the given {@link MarkerOptions} to the {@link GoogleMap}.
+   * @see {@link ApplicationScene#presentMarker(MarkerOptions, InfoWindowOptions)}.
    */
   public void presentMarker(MarkerOptions options) {
-    view.getMap().addMarker(new Marker(options));
+    presentMarker(options, null);
+  }
+
+  /**
+   * Adds a new {@link Marker} using the given {@link MarkerOptions} to the {@link GoogleMap}.
+   */
+  public void presentMarker(MarkerOptions options, InfoWindowOptions infoWindowOptions) {
+    Marker marker = new Marker(options);
+
+    if (infoWindowOptions != null) {
+      view.getMap().addUIEventHandler(marker, UIEventType.click, (JSObject jsObject) -> {
+        InfoWindow infoWindow = new InfoWindow(infoWindowOptions);
+        infoWindow.open(view.getMap(), marker);
+      });
+    }
+
+    view.getMap().addMarker(marker);
   }
 
   /**

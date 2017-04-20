@@ -54,7 +54,7 @@ public final class DaySelectionDropdown extends ComboBox {
             Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
                 LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 
-                scene.presentMarker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE));
+                scene.presentMarker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE), null);
             });
         });
 

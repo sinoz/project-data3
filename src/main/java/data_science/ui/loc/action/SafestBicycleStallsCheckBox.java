@@ -1,9 +1,11 @@
 package data_science.ui.loc.action;
 
+import com.lynden.gmapsfx.javascript.object.InfoWindowOptions;
 import com.lynden.gmapsfx.javascript.object.LatLong;
 import com.lynden.gmapsfx.javascript.object.MarkerOptions;
 import data_science.database.query.SafestBicycleStallsQuery;
 import data_science.model.BicycleStall;
+import data_science.model.StallTheft;
 import data_science.ui.ApplicationScene;
 import data_science.ui.loc.LocationViewActionBar;
 import javafx.application.Platform;
@@ -54,11 +56,18 @@ public final class SafestBicycleStallsCheckBox extends CheckBox {
 	}
 
 	private void applyMarkers(ApplicationScene scene) {
-		SafestBicycleStallsQuery.compute().take(5).subscribe((BicycleStall s) -> {
+		SafestBicycleStallsQuery.compute().take(5).subscribe((StallTheft t) -> {
 			Platform.runLater(() -> { // TODO integrate Platform thread with RxJava
+				BicycleStall s = t.getStall();
+
 				LatLong coordinates = new LatLong(s.getLatitude(), s.getLongitude());
 
-				scene.presentMarker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE));
+				InfoWindowOptions infoWindowOptions = new InfoWindowOptions();
+				infoWindowOptions.content("<h2>" + s.getArea() + "</h2>"
+						+ "Street Name: " + s.getName() + "<br>"
+				    + "Theft Count: " + t.getTheftCount() + "<br>");
+
+				scene.presentMarker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE), infoWindowOptions);
 			});
 		});
 
