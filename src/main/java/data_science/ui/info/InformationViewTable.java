@@ -28,8 +28,8 @@ public final class InformationViewTable extends VBox {
    */
   private void setTable() {
     infoTable.setEditable(true);
-    infoTable.setMaxWidth(1102);
-    infoTable.setMaxHeight(167);
+    infoTable.setMaxWidth(1202);
+    infoTable.setMaxHeight(168);
 
     /*
      * Create Lists with data that will be placed into the table
@@ -43,6 +43,7 @@ public final class InformationViewTable extends VBox {
     List<String> tabs = Arrays.asList("X", "X", "", "", "");
     List<String> graph = Arrays.asList("X", "X", "", "", "X");
     List<String> pres = Arrays.asList("X", "X", "X", "", "");
+    List<String> astah = Arrays.asList("", "X", "", "", "");
 
     /*
      * Create Columns for the table, specify their minimum width and set text alignment
@@ -55,7 +56,8 @@ public final class InformationViewTable extends VBox {
     TableColumn<Integer, String> paneCol = new TableColumn<>("Panes");
     TableColumn<Integer, String> tabsCol = new TableColumn<>("Tabs");
     TableColumn<Integer, String> graphCol = new TableColumn<>("Graphs");
-    TableColumn<Integer, String> presCol = new TableColumn<>("Graphs");
+    TableColumn<Integer, String> presCol = new TableColumn<>("Presentatie");
+    TableColumn<Integer, String> astahCol = new TableColumn<>("ERD's");
 
     nameCol.setMinWidth(300);
     cssCol.setMinWidth(100);
@@ -66,6 +68,7 @@ public final class InformationViewTable extends VBox {
     tabsCol.setMinWidth(100);
     graphCol.setMinWidth(100);
     presCol.setMinWidth(100);
+    astahCol.setMinWidth(100);
 
     nameCol.setStyle( "-fx-alignment: CENTER;");
     cssCol.setStyle( "-fx-alignment: CENTER;");
@@ -76,6 +79,7 @@ public final class InformationViewTable extends VBox {
     tabsCol.setStyle( "-fx-alignment: CENTER;");
     graphCol.setStyle( "-fx-alignment: CENTER;");
     presCol.setStyle( "-fx-alignment: CENTER;");
+    astahCol.setStyle( "-fx-alignment: CENTER;");
 
     /*
      * Create cells for the Columns
@@ -116,11 +120,15 @@ public final class InformationViewTable extends VBox {
       Integer rowIndex = cellData.getValue();
       return new ReadOnlyStringWrapper(pres.get(rowIndex));
     });
+    astahCol.setCellValueFactory(cellData -> {
+      Integer rowIndex = cellData.getValue();
+      return new ReadOnlyStringWrapper(astah.get(rowIndex));
+    });
 
     /*
      * Fill the Columns
      */
-    for (int i = 0; i < names.size() && i < css.size() && i < sample.size() && i < sql.size() && i < maps.size() && i < pane.size() && i < tabs.size() && i < graph.size() && i < pres.size(); i++) {
+    for (int i = 0; i < names.size() && i < css.size() && i < sample.size() && i < sql.size() && i < maps.size() && i < pane.size() && i < tabs.size() && i < graph.size() && i < pres.size()&& i < astah.size(); i++) {
       infoTable.getItems().add(i);
     }
 
@@ -133,6 +141,7 @@ public final class InformationViewTable extends VBox {
     infoTable.getColumns().add(tabsCol);
     infoTable.getColumns().add(graphCol);
     infoTable.getColumns().add(presCol);
+    infoTable.getColumns().add(astahCol);
 
     getChildren().add(infoTable);
   }
