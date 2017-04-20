@@ -2,7 +2,7 @@ package data_science.model;
 
 /**
  * Describes the amount of thefts that have been committed from a {@link BicycleStall}.
- * @author Whis
+ * @author I.A
  */
 public final class StallTheft {
 	/**

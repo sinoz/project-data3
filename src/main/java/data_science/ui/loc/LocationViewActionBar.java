@@ -1,6 +1,10 @@
 package data_science.ui.loc;
 
-import data_science.ui.loc.action.*;
+import data_science.ui.loc.action.BicycleStallsCheckBox;
+import data_science.ui.loc.action.LeastSafeBicycleStallsBox;
+import data_science.ui.loc.action.SafestBicycleStallsCheckBox;
+import data_science.ui.loc.action.TheftsFromStallsCheckBox;
+import data_science.ui.loc.text.SelectText;
 import javafx.geometry.Insets;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.GridPane;
@@ -12,8 +16,6 @@ import javafx.scene.layout.GridPane;
  * @author Jasper Wijnhoven
  */
 public final class LocationViewActionBar extends GridPane {
-
-  private final GridPane comboBox = new LocationViewComboPane();
   /**
    * A checkbox to toggle whether to showcase all bicycle stalls.
    */
@@ -38,7 +40,6 @@ public final class LocationViewActionBar extends GridPane {
    * Creates a new {@link LocationViewActionBar}.
    */
   LocationViewActionBar() {
-    this.add(comboBox, 1, 4);
     addPadding();
     addSubordinates();
     applyStyling();
@@ -49,10 +50,11 @@ public final class LocationViewActionBar extends GridPane {
   }
 
   private void addSubordinates() {
-    add(bicycleStalls, 1, 0);
-    add(bicycleTheftsFromStalls, 1, 1);
-    add(top5SafestBicycleStalls, 1, 2);
-    add(top5LeastSafeBicycleStalls, 1, 3);
+    add(new SelectText(), 1, 0);
+    add(bicycleStalls, 1, 1);
+    add(bicycleTheftsFromStalls, 1, 2);
+    add(top5SafestBicycleStalls, 1, 3);
+    add(top5LeastSafeBicycleStalls, 1, 4);
   }
 
   private void addPadding() {
