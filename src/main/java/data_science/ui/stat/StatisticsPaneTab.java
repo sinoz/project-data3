@@ -16,7 +16,7 @@ public final class StatisticsPaneTab extends CategorizedTab {
 	 * Creates a new {@link StatisticsPaneTab}.
 	 */
 	public StatisticsPaneTab() {
-		super("Statistieken");
+		super("Graphs");
 
 		this.pane = new StatisticsViewPane();
 

@@ -48,7 +48,7 @@ public final class InformationViewTable extends VBox {
     /*
      * Create Columns for the table, specify their minimum width and set text alignment
      */
-    TableColumn<Integer, String> nameCol = new TableColumn<>("Naam");
+    TableColumn<Integer, String> nameCol = new TableColumn<>("Name");
     TableColumn<Integer, String> cssCol = new TableColumn<>("CSS");
     TableColumn<Integer, String> sampleCol = new TableColumn<>("Samples");
     TableColumn<Integer, String> sqlCol = new TableColumn<>("SQL");
@@ -56,7 +56,7 @@ public final class InformationViewTable extends VBox {
     TableColumn<Integer, String> paneCol = new TableColumn<>("Panes");
     TableColumn<Integer, String> tabsCol = new TableColumn<>("Tabs");
     TableColumn<Integer, String> graphCol = new TableColumn<>("Graphs");
-    TableColumn<Integer, String> presCol = new TableColumn<>("Presentatie");
+    TableColumn<Integer, String> presCol = new TableColumn<>("Presentation");
     TableColumn<Integer, String> astahCol = new TableColumn<>("ERD's");
 
     nameCol.setMinWidth(300);

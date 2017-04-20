@@ -18,7 +18,7 @@ public final class InformationViewTab extends CategorizedTab {
      * Creates a new {@link InformationViewTab}.
      */
     public InformationViewTab() {
-        super("Informatie");
+        super("Information");
         this.pane = new InformationViewPane();
         setContent(this.pane);
     }

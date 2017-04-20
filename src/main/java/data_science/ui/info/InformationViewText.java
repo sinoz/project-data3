@@ -18,8 +18,8 @@ public final class InformationViewText extends VBox {
 
   private void setText() {
     Label infoText = new Label(
-        "Deze applicatie is gemaakt door Ilyas, Jasper, Xin Hao, Dino en Johan. \n" +
-            "In de tabel hierboven kunt u zien wie wat heeft gedaan. \n"
+        "This application was made by Ilyas, Jasper, Xin Hao, Dino and Johan. \n" +
+            "In the table above you can see who worked on which features."
     );
     getChildren().add(infoText);
   }

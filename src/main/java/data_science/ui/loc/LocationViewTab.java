@@ -17,7 +17,7 @@ public final class LocationViewTab extends CategorizedTab {
 	 * Creates a new {@link LocationViewTab}.
 	 */
 	public LocationViewTab(GoogleMapView mapView) {
-		super("Locatie");
+		super("Location");
 
 		this.pane = new LocationViewPane(mapView);
 
