@@ -19,13 +19,12 @@ public final class LeastSafeBicycleStallsQuery {
      * The query to write.
      */
     // TODO read from sql file
-    private static final String QUERY =
-            "SELECT COUNT(*) AS count, bs.street, bs.area, bs.latitude, bs.longitude " +
-                    "FROM bicycle_thefts AS bt " +
-                    "INNER JOIN bicycle_stalls AS bs " +
-                    "ON bs.street = bt.straat AND bt.plaats = 'ROTTERDAM' AND bs.latitude <> 0.0 AND bs.longitude <> 0.0 " +
-                    "GROUP BY bs.street, bs.area, bs.latitude, bs.longitude " +
-                    "ORDER BY count DESC;";
+    private static final String QUERY = "SELECT COUNT(*) as total, bs.street, bs.area, bs.latitude, bs.longitude\n" +
+        "FROM bicycle_thefts AS bt\n" +
+        "INNER JOIN bicycle_stalls AS bs\n" +
+        "ON bs.street = bt.straat AND bs.latitude <> 0.0 AND bs.longitude <> 0.0\n" +
+        "GROUP BY bs.street, bs.area, bs.latitude, bs.longitude\n" +
+        "ORDER BY total DESC";
 
     /**
      * Returns an {@link Observable} that computes the collection of safest bicycle stalls.
@@ -44,7 +43,7 @@ public final class LeastSafeBicycleStallsQuery {
 
                         BicycleStall stall = new BicycleStall(streetName, area, latitude, longitude);
 
-                        int count = resultSet.getInt("count");
+                        int count = resultSet.getInt("total");
 
                         emitter.onNext(new StallTheft(stall, count));
                     }

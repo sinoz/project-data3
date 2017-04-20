@@ -67,6 +67,8 @@ public final class LeastSafeBicycleStallsBox extends CheckBox {
                     + "Street Name: " + s.getName() + "<br>"
                     + "Theft Count: " + t.getTheftCount() + "<br>");
 
+                System.out.println(t);
+
                 scene.presentMarker(new MarkerOptions().position(coordinates).visible(Boolean.TRUE), infoWindowOptions);
             });
         });
