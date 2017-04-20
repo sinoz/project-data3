@@ -1,12 +1,12 @@
 package data_science.model;
 
 /**
- * TODO
+ * Describes the amount of thefts that have been committed from a {@link BicycleStall}.
  * @author Whis
  */
 public final class StallTheft {
 	/**
-	 * TODO
+	 * The {@link BicycleStall} that was stolen from.
 	 */
 	private final BicycleStall stall;
 
@@ -16,7 +16,7 @@ public final class StallTheft {
 	private final int theftCount;
 
 	/**
-	 * TODO
+	 * Creates a new {@link StallTheft}.
 	 */
 	public StallTheft(BicycleStall stall, int theftCount) {
 		this.stall = stall;
@@ -29,5 +29,10 @@ public final class StallTheft {
 
 	public int getTheftCount() {
 		return theftCount;
+	}
+
+	@Override
+	public String toString() {
+		return "StallTheft(" + stall + ", " + theftCount + ")";
 	}
 }

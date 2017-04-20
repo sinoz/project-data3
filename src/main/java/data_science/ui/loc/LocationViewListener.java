@@ -14,6 +14,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public final class LocationViewListener implements MapComponentInitializedListener {
   /**
+   * The initial latitude and longitude values.
+   */
+  private static final double INITIAL_LATITUDE = 51.9200000D, INITIAL_LONGITUDE = 4.4700000D;
+
+  /**
    * The current {@link GoogleMap} to present.
    */
   private GoogleMap map;
@@ -52,7 +57,7 @@ public final class LocationViewListener implements MapComponentInitializedListen
   private MapOptions initialMapViewSettings() {
     MapOptions opt = new MapOptions();
 
-    opt.center(new LatLong(51.9200000, 4.4700000));
+    opt.center(new LatLong(INITIAL_LATITUDE, INITIAL_LONGITUDE));
     opt.overviewMapControl(false);
     opt.panControl(false);
     opt.rotateControl(false);
